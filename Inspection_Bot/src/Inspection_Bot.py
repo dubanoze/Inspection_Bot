@@ -16,8 +16,6 @@ def w(s):
     sys.stdout.flush()
 
 
-
-
 def cam_loop(queue_from_cam):
     print 'initializing cam'
     cap = cv2.VideoCapture(0)
@@ -26,7 +24,19 @@ def cam_loop(queue_from_cam):
     print 'queueing image'
     queue_from_cam.put(img)
     print 'cam_loop done'
+
+def snap_image(position):
+
+    cam_process = multiprocessing.Process(target=cam_loop,args=(queue_from_cam,))
+    cam_process.start()
     
+    print 'getting image'
+    from_queue = queue_from_cam.get()
+    print 'saving image'
+    cv2.imwrite("../saved_images/position%s.png" % position, from_queue)
+    print 'image saved'
+    cam_process.join()
+
 
 
 
@@ -74,36 +84,51 @@ if __name__ == '__main__':
     
     queue_from_cam = multiprocessing.Queue()
     
+    
     position = 1
     p.send_now("G0 X20 Y20 F3000")  # ; Move X axis to location 1000
-    print "location 1 reached"
-    time.sleep(5)
+    time.sleep(1)
+    snap_image(position)
+    position += 1
+
+
     
-    cam_process = multiprocessing.Process(target=cam_loop,args=(queue_from_cam,))
-    cam_process.start()
+    p.send_now("G0 X23 F3000")  # ; Move X axis to location 1000
+    time.sleep(0.5)
+    snap_image(position)
+    position += 1
+    
+
+    p.send_now("G0 X26 F3000")  # ; Move X axis to location 1000
+    time.sleep(0.5)
+    snap_image(position)
+    position += 1
+    
+    p.send_now("G0 X29 F3000")  # ; Move X axis to location 1000
+    time.sleep(0.5)
+    snap_image(position)
+    position += 1
+    
+    
+    p.send_now("G0 X32 F3000")  # ; Move X axis to location 1000
+    time.sleep(0.5)
+    snap_image(position)
+    position += 1
+    
+    
+    p.send_now("G0 X35 F3000")  # ; Move X axis to location 1000
+    time.sleep(0.5)
+    snap_image(position)
+    position += 1
+    
+    
+    p.send_now("G0 X38 F3000")  # ; Move X axis to location 1000
+    time.sleep(0.5)
+    snap_image(position)
+    position += 1
     
 
 
-    print 'getting image'
-    from_queue = queue_from_cam.get()
-    print 'saving image'
-    cv2.imwrite("../saved_images/position%s.png" % str(position), from_queue)
-    print 'image saved'
-    position += 1
-    cam_process.join()
-    
-    
-    p.send_now("G0 X25 F3000")  # ; Move X axis to location 1000
-    print "location 2 reached"
-    time.sleep(5)
-    cam_process.start()
-    print 'getting image'
-    from_queue = queue_from_cam.get()
-    print 'saving image'
-    cv2.imwrite("../saved_images/position%s.png" % str(position), from_queue)
-    print 'image saved'
-    position += 1
-    
 
 #     cv.NamedWindow("camera", 1)
 #     
