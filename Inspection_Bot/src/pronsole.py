@@ -21,7 +21,7 @@ from console_module import *
 
 if __name__ == "__main__":
 
-    interp = my_pronsole()
+    interp = my_pronsole(sys.stdin,sys.stdout)
     interp.parse_cmdline(sys.argv[1:])
     try:
         interp.cmdloop()

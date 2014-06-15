@@ -4,8 +4,8 @@ from printrun.pronsole import *
 
 
 class my_pronsole(cmd.Cmd):
-    def __init__(self):
-        cmd.Cmd.__init__(self,stdin=sys.stdin,stdout=sys.stdout)
+    def __init__(self,command_input,console_output):
+        cmd.Cmd.__init__(self,stdin=command_input,stdout=console_output)
         if not READLINE:
             self.completekey = None
         self.status = Status()
