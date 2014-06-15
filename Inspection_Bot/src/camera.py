@@ -6,7 +6,6 @@ import cv2.cv as cv
 #  Initialize Camera
 #  --------------------------------------------------------------
 
-import cv2.cv as cv
 
 
 
