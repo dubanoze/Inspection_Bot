@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
-
+import multiprocessing
+import Image
+import pickle
 
 import cv2.cv as cv
 from pronsole import *
@@ -15,8 +17,40 @@ def w(s):
     sys.stdout.flush()
 
 
+queue_from_cam = multiprocessing.Queue()
+
+def cam_loop(queue_from_cam):
+    print 'initializing cam'
+    cam = cv.CaptureFromCAM(-1)
+    print 'querying frame'
+    img = cv.QueryFrame(cam)
+    print 'converting image'
+    pimg = img.tostring()
+    print 'pickling image'
+    pimg2 = pickle.dumps(pimg,-1)
+    print 'queueing image'
+    queue_from_cam.put([pimg2,cv.GetSize(img)])
+    print 'cam_loop done'
+    
+def snap_image(position):
+    print 'getting pickled image'
+    from_queue = queue_from_cam.get()
+    print 'unpickling image'
+    pimg = pickle.loads(from_queue[0])
+    print 'unconverting image'
+    cv_im = cv.CreateImageHeader(from_queue[1], cv.IPL_DEPTH_8U, 3)
+    cv.SetData(cv_im, pimg)
+    print 'saving image'
+    cv.SaveImage("../saved_images/position%s.png" % str(position),cv_im)
+    print 'image saved'
+
+
+
 
 if __name__ == '__main__':
+    
+    
+    
     port = '/dev/ttyACM0'  # Default serial port to connect to printer
     print "Initial parameters"
     #print "Steps per mm:    %3d steps" % k
@@ -56,64 +90,36 @@ if __name__ == '__main__':
     
     
     
-    
-    cv.NamedWindow("camera", 1)
-    
-    capture = cv.CaptureFromCAM(0)
-    
-    
-    i = 1
+    position = 1
     p.send_now("G0 X20 Y20 F3000")  # ; Move X axis to location 1000
     print "new location reached"
-    while True:
-        img = cv.QueryFrame(capture)
-        cv.ShowImage("camera", img)
-        if cv.WaitKey(10) == 27: #Esc key to exit
-            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
-            break
-    cv.DestroyAllWindows()
-    print "saved image %s" % str(i)
-    i += 1
+    time.sleep(5)
     
-    p.send_now("G0 X23 F3000")  # ; Move X axis to location 1000
+    cam_process = multiprocessing.Process(target=cam_loop,args=(queue_from_cam,))
+    cam_process.start()
+    while queue_from_cam.empty():
+        pass
+    
+    snap_image(position)
+    position += 1
+    
+    
+    
+    p.send_now("G0 X25 F3000")  # ; Move X axis to location 1000
     print "new location reached"
-    while True:
-        img = cv.QueryFrame(capture)
-        cv.ShowImage("camera", img)
-        if cv.WaitKey(10) == 27: #Esc key to exit
-            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
-            break
-    cv.DestroyAllWindows()
-    print "saved image %s" % str(i)
-    i += 1
+    time.sleep(3)
+    #cam_process.get()
+    #snap_image(position)
+    position += 1
+    #cam_process.join()
+    
 
-
-
-    p.send_now("G0 X26 F3000")  # ; Move X axis to location 1000
-    print "new location reached"
-    while True:
-        img = cv.QueryFrame(capture)
-        cv.ShowImage("camera", img)
-        if cv.WaitKey(10) == 27: #Esc key to exit
-            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
-            break
-    cv.DestroyAllWindows()
-    print "saved image %s" % str(i)
-    i += 1
-
-
-    p.send_now("G0 X29 F3000")  # ; Move X axis to location 1000
-    print "new location reached"
-    while True:
-        img = cv.QueryFrame(capture)
-        cv.ShowImage("camera", img)
-        if cv.WaitKey(10) == 27: #Esc key to exit
-            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
-            break
-    cv.DestroyAllWindows()
-    print "saved image %s" % str(i)
-    i += 1
-
+#     cv.NamedWindow("camera", 1)
+#     
+#     capture = cv.CaptureFromCAM(0)
+#     
+#     
+    
     
     
     # Finally disconnect from printer
