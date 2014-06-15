@@ -19,9 +19,9 @@ import sys
 import traceback
 from console_module import *
 
-if __name__ == "__main__":
+def run_console(command_input,console_output):
 
-    interp = my_pronsole(sys.stdin,sys.stdout)
+    interp = my_pronsole(command_input,console_output)
     interp.parse_cmdline(sys.argv[1:])
     try:
         interp.cmdloop()

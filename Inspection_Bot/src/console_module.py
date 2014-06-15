@@ -6,6 +6,7 @@ from printrun.pronsole import *
 class my_pronsole(cmd.Cmd):
     def __init__(self,command_input,console_output):
         cmd.Cmd.__init__(self,stdin=command_input,stdout=console_output)
+        cmd.Cmd.use_rawinput=False
         if not READLINE:
             self.completekey = None
         self.status = Status()
