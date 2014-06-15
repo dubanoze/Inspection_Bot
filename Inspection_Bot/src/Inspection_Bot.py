@@ -38,21 +38,21 @@ if __name__ == '__main__':
             w('.')
         print " connected."
         
-        p.send_now("G28 X")  # ; Home X axis
+        p.send_now("G28 XY")  # ; Home X axis
         #time.sleep(4)
-        p.send_now("G0 X100 F2000")  # ; Move X axis to location 1000
+        #p.send_now("G0 X20 Y20 F5000")  # ; Move X axis to location 1000
         #time.sleep(4)
-        p.send_now("M84")#; Motors off
-        time.sleep(4)
+        #p.send_now("M84")#; Motors off
+        #time.sleep(4)
         #p.send_now("M114")#; Motors off
-        #time.sleep(4)
+        time.sleep(3)
         print "GCode Sent"
     
         
     except KeyboardInterrupt:
         pass
-    finally:
-        if p: p.disconnect()
+    #finally:
+    #    if p: p.disconnect()
     
     
     
@@ -61,10 +61,61 @@ if __name__ == '__main__':
     
     capture = cv.CaptureFromCAM(0)
     
+    
+    i = 1
+    p.send_now("G0 X20 Y20 F3000")  # ; Move X axis to location 1000
+    print "new location reached"
     while True:
         img = cv.QueryFrame(capture)
         cv.ShowImage("camera", img)
         if cv.WaitKey(10) == 27: #Esc key to exit
-            cv.SaveImage("../saved_images/sample.png",img)
+            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
             break
     cv.DestroyAllWindows()
+    print "saved image %s" % str(i)
+    i += 1
+    
+    p.send_now("G0 X23 F3000")  # ; Move X axis to location 1000
+    print "new location reached"
+    while True:
+        img = cv.QueryFrame(capture)
+        cv.ShowImage("camera", img)
+        if cv.WaitKey(10) == 27: #Esc key to exit
+            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
+            break
+    cv.DestroyAllWindows()
+    print "saved image %s" % str(i)
+    i += 1
+
+
+
+    p.send_now("G0 X26 F3000")  # ; Move X axis to location 1000
+    print "new location reached"
+    while True:
+        img = cv.QueryFrame(capture)
+        cv.ShowImage("camera", img)
+        if cv.WaitKey(10) == 27: #Esc key to exit
+            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
+            break
+    cv.DestroyAllWindows()
+    print "saved image %s" % str(i)
+    i += 1
+
+
+    p.send_now("G0 X29 F3000")  # ; Move X axis to location 1000
+    print "new location reached"
+    while True:
+        img = cv.QueryFrame(capture)
+        cv.ShowImage("camera", img)
+        if cv.WaitKey(10) == 27: #Esc key to exit
+            cv.SaveImage("../saved_images/position%s.png" % str(i),img)
+            break
+    cv.DestroyAllWindows()
+    print "saved image %s" % str(i)
+    i += 1
+
+    
+    
+    # Finally disconnect from printer
+    p.send_now("M84")#; Motors off
+    if p: p.disconnect()
