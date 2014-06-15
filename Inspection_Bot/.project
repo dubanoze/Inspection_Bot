@@ -3,6 +3,7 @@
 	<name>Inspection_Bot</name>
 	<comment></comment>
 	<projects>
+		<project>Printrun</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

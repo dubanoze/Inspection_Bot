@@ -18,11 +18,3 @@ def camera():
             cv.SaveImage("../saved_images/sample.png",img)
             break
     cv.DestroyAllWindows()
-
-#  --------------------------------------------------------------
-#  Main
-#  Notes:
-#  --------------------------------------------------------------    
-        
-if __name__ == '__main__':
-    camera()
