@@ -147,7 +147,11 @@ try:
         w('.')
     print " connected."
     
-    p.send_now("G28 X")  # Reset e axis
+    p.send_now("G28 X")  # ; Home X axis
+    time.sleep(4)
+    p.send_now("G0 X100 F2000")  # ; Move X axis to location 1000
+    time.sleep(4)
+    p.send_now("M84")#; Motors off
     time.sleep(4)
     print "GCode Sent"
     #p.disconnect()
