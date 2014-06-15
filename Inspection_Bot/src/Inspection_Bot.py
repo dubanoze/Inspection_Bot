@@ -38,6 +38,26 @@ def snap_image(position):
     cam_process.join()
 
 
+def daemon():
+    print 'Starting:', multiprocessing.current_process().name
+    
+    cap = cv2.VideoCapture(0)
+
+    while(True):
+        # Capture frame-by-frame
+        ret, img = cap.read()
+        # Display the resulting frame
+        cv2.imshow('camera',img)
+        if cv.WaitKey(10) == 27: #Esc key to exit
+            break
+    
+    # When everything done, release the capture
+    cap.release()
+    cv2.destroyAllWindows()
+
+
+
+    print 'Exiting :', multiprocessing.current_process().name
 
 
 
@@ -81,6 +101,11 @@ if __name__ == '__main__':
         pass
     #finally:
     #    if p: p.disconnect()
+    
+    d = multiprocessing.Process(name='daemon', target=daemon)
+    d.daemon = True
+    
+    d.start()
     
     queue_from_cam = multiprocessing.Queue()
     
@@ -136,7 +161,7 @@ if __name__ == '__main__':
 #     
 #     
     
-    
+    d.join()
     
     # Finally disconnect from printer
     p.send_now("M84")#; Motors off
