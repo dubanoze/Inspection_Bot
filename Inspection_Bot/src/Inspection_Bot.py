@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import multiprocessing
+from multiprocessing import Process, Value, Array, Pipe, Lock
 import cv2
 import cv2.cv as cv
 
@@ -15,40 +16,54 @@ def w(s):
     sys.stdout.write(s)
     sys.stdout.flush()
 
+#Shared counter with Python's multiprocessing
+#from http://eli.thegreenplace.net/2012/01/04/shared-counter-with-pythons-multiprocessing/
+class Counter(object):
+    def __init__(self, initval=0):
+        self.val = Value('i', initval)
+        self.lock = Lock()
 
-def cam_loop(queue_from_cam):
-    print 'initializing cam'
-    cap = cv2.VideoCapture(0)
-    print 'querying frame'
-    hello, img = cap.read()
-    print 'queueing image'
-    queue_from_cam.put(img)
-    print 'cam_loop done'
+    def increment(self):
+        with self.lock:
+            self.val.value += 1
 
-def snap_image(position):
+    def value(self):
+        with self.lock:
+            return self.val.value
 
-    cam_process = multiprocessing.Process(target=cam_loop,args=(queue_from_cam,))
-    cam_process.start()
+
+
+#The Pipe() function returns a pair of connection objects connected 
+#by a pipe which by default is duplex (two-way). For example:
+def f(conn):
+    conn.send([42, None, 'hello'])
+    conn.close()
+
+
+def camera_feed(prev_position, curr_position, next_position):
     
-    print 'getting image'
-    from_queue = queue_from_cam.get()
-    print 'saving image'
-    cv2.imwrite("../saved_images/position%s.png" % position, from_queue)
-    print 'image saved'
-    cam_process.join()
-
-
-def daemon():
     print 'Starting:', multiprocessing.current_process().name
     
     cap = cv2.VideoCapture(0)
 
     while(True):
-        # Capture frame-by-frame
+       # Capture frame-by-frame
         ret, img = cap.read()
         # Display the resulting frame
         cv2.imshow('camera',img)
+        i = 0
+        print "camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+        if curr_position.value() != prev_position.value():
+            print "camera is about to photograph at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+            prev_position.increment()
+            print 'saving image'
+            cv2.imwrite("../saved_images/position%s.png" % str(curr_position.value()), img)
+            print 'image saved'
+            print "prev position was incremented to %s" % str(prev_position.value())
+            print "so..., now camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+
         if cv.WaitKey(10) == 27: #Esc key to exit
+            print "at position %s" % str(curr_position.value())
             break
     
     # When everything done, release the capture
@@ -56,12 +71,25 @@ def daemon():
     cv2.destroyAllWindows()
 
 
-
     print 'Exiting :', multiprocessing.current_process().name
+
+# def update_position(position):
+#     print "at position %s" % str(curr_position)
+#     curr_position = position
+#     print "at position %s" % str(curr_position)
 
 
 
 if __name__ == '__main__':
+    
+
+#The two connection objects returned by Pipe() represent 
+#the two ends of the pipe. Each connection object has send() 
+#and recv() methods (among others). Note that data in a pipe may 
+#become corrupted if two processes (or threads) try to read from
+# or write to the same end of the pipe at the same time. 
+#Of course there is no risk of corruption from processes using 
+#different ends of the pipe at the same time.
     
     
     
@@ -102,55 +130,77 @@ if __name__ == '__main__':
     #finally:
     #    if p: p.disconnect()
     
-    d = multiprocessing.Process(name='daemon', target=daemon)
-    d.daemon = True
     
+    # Setting up Shared Memory variables. this is like global variables, but it is process and thread safe. according to: https://docs.python.org/2/library/multiprocessing.html#sharing-state-between-processes 
+    prev_position = Counter(0)
+    curr_position = Counter(0)
+    next_position = Counter(0)
+    print type(prev_position)
+    
+    #these variables are sent to the camera_feed process, which can access and modify them
+    d = multiprocessing.Process(name='camera_feed', target=camera_feed, args=(prev_position, curr_position, next_position))
+    #d.daemon = True
     d.start()
+        
     
-    queue_from_cam = multiprocessing.Queue()
+    #queue_from_cam = multiprocessing.Queue()
     
     
-    position = 1
+    print "bot is now at position {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
     p.send_now("G0 X20 Y20 F3000")  # ; Move X axis to location 1000
     time.sleep(1)
-    snap_image(position)
-    position += 1
+    curr_position.increment()
+    print "bot was just moved to position {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+    #snap_image(position)
+    time.sleep(1)
 
 
     
     p.send_now("G0 X23 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
-    snap_image(position)
-    position += 1
+    #snap_image(position)
+    curr_position.increment()
+    #snap_image(position)
+    time.sleep(1)
     
 
     p.send_now("G0 X26 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
-    snap_image(position)
-    position += 1
+    #snap_image(position)
+    curr_position.increment()
+    #snap_image(position)
+    time.sleep(1)
     
     p.send_now("G0 X29 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
-    snap_image(position)
-    position += 1
+    #snap_image(position)
+    curr_position.increment()
+    #snap_image(position)
+    time.sleep(1)
     
     
     p.send_now("G0 X32 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
-    snap_image(position)
-    position += 1
+    #snap_image(position)
+    curr_position.increment()
+    #snap_image(position)
+    time.sleep(1)
     
     
     p.send_now("G0 X35 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
-    snap_image(position)
-    position += 1
+    #snap_image(position)
+    curr_position.increment()
+    #snap_image(position)
+    time.sleep(1)
     
     
     p.send_now("G0 X38 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
-    snap_image(position)
-    position += 1
+    #snap_image(position)
+    curr_position.increment()
+    #snap_image(position)
+    time.sleep(1)
     
 
 
