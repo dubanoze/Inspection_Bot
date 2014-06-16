@@ -52,15 +52,15 @@ def camera_feed(prev_position, curr_position, next_position):
         # Display the resulting frame
         cv2.imshow('camera',img)
         i = 0
-        print "camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+        #print "camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
         if curr_position.value() != prev_position.value():
-            print "camera is about to photograph at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+            #print "camera is about to photograph at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
             prev_position.increment()
-            print 'saving image'
+            #print 'saving image'
             cv2.imwrite("../saved_images/position%s.png" % str(curr_position.value()), img)
-            print 'image saved'
-            print "prev position was incremented to %s" % str(prev_position.value())
-        print "so..., now camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+            #print 'image saved'
+            #print "prev position was incremented to %s" % str(prev_position.value())
+        #print "so..., now camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
 
         if cv.WaitKey(10) == 27: #Esc key to exit
             print "at position %s" % str(curr_position.value())
@@ -155,52 +155,21 @@ if __name__ == '__main__':
     time.sleep(1)
 
 
+    x=40.10
+    delta=3.0
+    for i in range (0,20):
+        x=x+delta
+        X_position = "{:.2f}".format(float(x))
+        gcode_command = "G0"+ " " + "X" + X_position + " " + "F3000" 
+        #gcode_command = "G0 X40.10 F3000"
+        print gcode_command
+        p.send_now(gcode_command)  # ; Move X axis to location 1000
+        time.sleep(0.5)
+        #snap_image(position)
+        curr_position.increment()
+        #snap_image(position)
+        time.sleep(1)
     
-    p.send_now("G0 X40.10 F3000")  # ; Move X axis to location 1000
-    time.sleep(0.5)
-    #snap_image(position)
-    curr_position.increment()
-    #snap_image(position)
-    time.sleep(1)
-    
-
-    p.send_now("G0 X43.10 F3000")  # ; Move X axis to location 1000
-    time.sleep(0.5)
-    #snap_image(position)
-    curr_position.increment()
-    #snap_image(position)
-    time.sleep(1)
-    
-    p.send_now("G0 X46.10 F3000")  # ; Move X axis to location 1000
-    time.sleep(0.5)
-    #snap_image(position)
-    curr_position.increment()
-    #snap_image(position)
-    time.sleep(1)
-    
-    
-    p.send_now("G0 X49.10 F3000")  # ; Move X axis to location 1000
-    time.sleep(0.5)
-    #snap_image(position)
-    curr_position.increment()
-    #snap_image(position)
-    time.sleep(1)
-    
-    
-    p.send_now("G0 X51.10 F3000")  # ; Move X axis to location 1000
-    time.sleep(0.5)
-    #snap_image(position)
-    curr_position.increment()
-    #snap_image(position)
-    time.sleep(1)
-    
-    
-    p.send_now("G0 X54.10 F3000")  # ; Move X axis to location 1000
-    time.sleep(0.5)
-    #snap_image(position)
-    curr_position.increment()
-    #snap_image(position)
-    time.sleep(1)
     
 
 
