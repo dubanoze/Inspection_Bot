@@ -60,7 +60,7 @@ def camera_feed(prev_position, curr_position, next_position):
             cv2.imwrite("../saved_images/position%s.png" % str(curr_position.value()), img)
             print 'image saved'
             print "prev position was incremented to %s" % str(prev_position.value())
-            print "so..., now camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
+        print "so..., now camera is observing at {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
 
         if cv.WaitKey(10) == 27: #Esc key to exit
             print "at position %s" % str(curr_position.value())
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     
     
     print "bot is now at position {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
-    p.send_now("G0 X20 Y20 F3000")  # ; Move X axis to location 1000
+    p.send_now("G0 X37.10 Y46.00 F3000")  # ; Move X axis to location 1000
     time.sleep(1)
     curr_position.increment()
     print "bot was just moved to position {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
@@ -156,7 +156,7 @@ if __name__ == '__main__':
 
 
     
-    p.send_now("G0 X23 F3000")  # ; Move X axis to location 1000
+    p.send_now("G0 X40.10 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
     #snap_image(position)
     curr_position.increment()
@@ -164,22 +164,14 @@ if __name__ == '__main__':
     time.sleep(1)
     
 
-    p.send_now("G0 X26 F3000")  # ; Move X axis to location 1000
+    p.send_now("G0 X43.10 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
     #snap_image(position)
     curr_position.increment()
     #snap_image(position)
     time.sleep(1)
     
-    p.send_now("G0 X29 F3000")  # ; Move X axis to location 1000
-    time.sleep(0.5)
-    #snap_image(position)
-    curr_position.increment()
-    #snap_image(position)
-    time.sleep(1)
-    
-    
-    p.send_now("G0 X32 F3000")  # ; Move X axis to location 1000
+    p.send_now("G0 X46.10 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
     #snap_image(position)
     curr_position.increment()
@@ -187,7 +179,7 @@ if __name__ == '__main__':
     time.sleep(1)
     
     
-    p.send_now("G0 X35 F3000")  # ; Move X axis to location 1000
+    p.send_now("G0 X49.10 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
     #snap_image(position)
     curr_position.increment()
@@ -195,7 +187,15 @@ if __name__ == '__main__':
     time.sleep(1)
     
     
-    p.send_now("G0 X38 F3000")  # ; Move X axis to location 1000
+    p.send_now("G0 X51.10 F3000")  # ; Move X axis to location 1000
+    time.sleep(0.5)
+    #snap_image(position)
+    curr_position.increment()
+    #snap_image(position)
+    time.sleep(1)
+    
+    
+    p.send_now("G0 X54.10 F3000")  # ; Move X axis to location 1000
     time.sleep(0.5)
     #snap_image(position)
     curr_position.increment()
