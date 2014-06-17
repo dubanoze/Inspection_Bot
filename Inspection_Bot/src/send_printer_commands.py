@@ -23,7 +23,7 @@ import getopt
 import sys
 import os
 import math
-
+import re
 speed = 2000.0 * 60 # mm / sec
 wait_time_factor = 10.0
 
@@ -33,6 +33,8 @@ y_current_location = None
 p = None
 
 lock = Lock()
+
+
 
 def Go_To(x,y):
     
@@ -48,6 +50,7 @@ def Go_To(x,y):
         x_current_location=x
         y_current_location=y
         p.send_now(gcode_command)
+        p.send_now("G4 P2000")
         
     #lock.release
 
@@ -82,6 +85,8 @@ if __name__ == '__main__':
     if x_current_location is None:
         
         p.send_now("G28 X F2000")  # ; Home X axis
+        p.send_now("G4 P2000")
+        #p.send_now("M226")
         time.sleep(4)
         x_current_location=0
     #lock.release
@@ -92,6 +97,8 @@ if __name__ == '__main__':
     if y_current_location is None:
         
         p.send_now("G28 Y F2000")  # ; Home Y axis
+        p.send_now("G4 P2000")
+        #p.send_now("M226") # Pause
         time.sleep(4)
         y_current_location=0
     #lock.release
@@ -101,14 +108,15 @@ if __name__ == '__main__':
     
 
     Go_To(100,0)
+    Go_To(100,100)
     #time.sleep(4)
     #Go_To(100,100)
     #Go_To(100,0)
     #p.send_now("G0 X100 F2000")  # ; Move X axis to location 1000
     #time.sleep(4)
 
-
+    time.sleep(2)
     p.send_now("M84")#; Motors off
     time.sleep(2)
     p.disconnect()
-    print "disconnected"
+    #print "disconnected"

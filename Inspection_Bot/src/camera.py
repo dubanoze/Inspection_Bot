@@ -23,22 +23,49 @@ def hist_curve(im):
     y=np.flipud(h)
     return y
 
+def hist_lines(im):
+    if len(im.shape)!=2:
+        print "hist_lines applicable only for grayscale images"
+        #print "so converting image to grayscale for representation"
+        im = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+    hist_item = cv2.calcHist([im],[0],None,[256],[0,256])
+    return hist_item
+
 
 if __name__ == '__main__':
+    update = True
     cv.NamedWindow("camera", 1)
     cv.NamedWindow("histogram",1)
     capture = cv.CaptureFromCAM(0)
-    
+    previous_img = None
+    img = None
     while True:
+
         img = cv.QueryFrame(capture)
-        #gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-        cvm_img = np.asarray(img[:,:])
         
-        #data = np.asarray(img[:,:])
-        curve = hist_curve(cvm_img)
-        cv2.imshow('histogram',curve)
+        if img is not None:
+            if update:
+                previous_img = cv.CloneImage(img)
+                update = False
+            cvm_pre_img = np.asarray(previous_img[:,:])
+            cvm_img = np.asarray(img[:,:])
+            
+            pre_gray = cv2.cvtColor(cvm_pre_img,cv2.COLOR_BGR2GRAY)
+            gray = cv2.cvtColor(cvm_img,cv2.COLOR_BGR2GRAY)
+            #data = np.asarray(img[:,:])
+            pre_curve = hist_curve(pre_gray)
+            curve = hist_curve(gray)
+            cv2.imshow('histogram',curve)
+            cv2.imshow('histogram2',pre_curve)
+            h1=cv2.calcHist([gray],[0],None,[256],[0,256])
+            h2=cv2.calcHist([pre_gray],[0],None,[256],[0,256])
+            value = cv2.compareHist(h1,h2,method=cv.CV_COMP_CORREL)
+            print "{0:.5f}".format(value);
+
+            
         cv.ShowImage("camera", img)
         if cv.WaitKey(10) == 27: #Esc key to exit
+            print "Update Flag " + str(update)
             print "img type: "+str(type(img))
             print "cvm_img type: "+ str(type(cvm_img))
             cv.SaveImage("../saved_images/sample.png",img)
