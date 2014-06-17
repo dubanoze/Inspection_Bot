@@ -147,7 +147,7 @@ if __name__ == '__main__':
     
     
     print "bot is now at position {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
-    p.send_now("G0 X37.10 Y46.00 F3000")  # ; Move X axis to location 1000
+    p.send_now("G0 X20 Y20 F3000")  # ; Move X axis to location 1000
     time.sleep(1)
     curr_position.increment()
     print "bot was just moved to position {0},{1}".format(str(prev_position.value()),str(curr_position.value()))
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     time.sleep(1)
 
 
-    x=40.10
+    x=20
     delta=3.0
     for i in range (0,20):
         x=x+delta
