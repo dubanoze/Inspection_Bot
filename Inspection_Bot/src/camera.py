@@ -40,7 +40,7 @@ if __name__ == '__main__':
     previous_img = None
     img = None
     while True:
-
+        key = cv.WaitKey(10)
         img = cv.QueryFrame(capture)
         
         if img is not None:
@@ -52,7 +52,7 @@ if __name__ == '__main__':
             
             pre_gray = cv2.cvtColor(cvm_pre_img,cv2.COLOR_BGR2GRAY)
             gray = cv2.cvtColor(cvm_img,cv2.COLOR_BGR2GRAY)
-            #data = np.asarray(img[:,:])
+            data = np.asarray(img[:,:])
             pre_curve = hist_curve(pre_gray)
             curve = hist_curve(gray)
             cv2.imshow('histogram',curve)
@@ -64,7 +64,9 @@ if __name__ == '__main__':
 
             
         cv.ShowImage("camera", img)
-        if cv.WaitKey(10) == 27: #Esc key to exit
+        if key == 110: #n key to update image
+            update=True
+        if key == 27: #Esc key to exit
             print "Update Flag " + str(update)
             print "img type: "+str(type(img))
             print "cvm_img type: "+ str(type(cvm_img))
