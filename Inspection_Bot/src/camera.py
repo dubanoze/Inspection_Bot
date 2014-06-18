@@ -2,7 +2,7 @@
 
 import cv2.cv as cv
 import cv2
-
+import array
 
 import numpy as np
 
@@ -39,10 +39,14 @@ if __name__ == '__main__':
     capture = cv.CaptureFromCAM(0)
     previous_img = None
     img = None
+    number_of_saved_images = 0
+    similarity_value_list = [float(0)] * 30
+    
+    
     while True:
         key = cv.WaitKey(10)
         img = cv.QueryFrame(capture)
-        
+        cv.ShowImage("camera", img)      
         if img is not None:
             if update:
                 previous_img = cv.CloneImage(img)
@@ -59,11 +63,13 @@ if __name__ == '__main__':
             cv2.imshow('histogram2',pre_curve)
             h1=cv2.calcHist([gray],[0],None,[256],[0,256])
             h2=cv2.calcHist([pre_gray],[0],None,[256],[0,256])
-            value = cv2.compareHist(h1,h2,method=cv.CV_COMP_CORREL)
-            print "{0:.5f}".format(value);
-
+            similarity_value = cv2.compareHist(h1,h2,method=cv.CV_COMP_CORREL)
+            print "Similarity Value = {0:.5f}".format(similarity_value)
+            similarity_value_list.insert(0, similarity_value)
+            similarity_value_list.pop()
+            variance_value = np.var(similarity_value_list)
+            print "Variance Value = {0:.5f}".format(variance_value)
             
-        cv.ShowImage("camera", img)
         if key == 110: #n key to update image
             update=True
         if key == 27: #Esc key to exit
