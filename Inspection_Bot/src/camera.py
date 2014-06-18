@@ -84,8 +84,11 @@ if __name__ == '__main__':
             
             if same_position == False and moving == False:
                 print "save file"
-            else:
-                print "don't save file"
+                save_file_name = "../saved_images/image{0}.png".format(str(number_of_saved_images))
+                number_of_saved_images =number_of_saved_images + 1
+                cv.SaveImage(save_file_name,img)
+                update = True
+
 
         if key == 110: #n key to update image
             update=True
