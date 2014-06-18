@@ -3,6 +3,7 @@
 import cv2.cv as cv
 import cv2
 import array
+import datetime
 
 import numpy as np
 
@@ -35,7 +36,7 @@ def hist_lines(im):
 if __name__ == '__main__':
     update = True
     cv.NamedWindow("camera", 1)
-    cv.NamedWindow("histogram",1)
+    cv.NamedWindow("live histogram",1)
     capture = cv.CaptureFromCAM(0)
     previous_img = None
     img = None
@@ -59,8 +60,8 @@ if __name__ == '__main__':
             data = np.asarray(img[:,:])
             pre_curve = hist_curve(pre_gray)
             curve = hist_curve(gray)
-            cv2.imshow('histogram',curve)
-            cv2.imshow('histogram2',pre_curve)
+            cv2.imshow('live histogram',curve)
+            cv2.imshow('saved image histogram',pre_curve)
             h1=cv2.calcHist([gray],[0],None,[256],[0,256])
             h2=cv2.calcHist([pre_gray],[0],None,[256],[0,256])
             similarity_value = cv2.compareHist(h1,h2,method=cv.CV_COMP_CORREL)
@@ -83,10 +84,11 @@ if __name__ == '__main__':
             #    print "not moving"
             
             if same_position == False and moving == False:
-                print "save file"
-                save_file_name = "../saved_images/image{0}.png".format(str(number_of_saved_images))
-                number_of_saved_images =number_of_saved_images + 1
+                date_and_timestamp = datetime.datetime.now().strftime('on %Y-%m-%d @ %H:%M:%S.%f %p')
+                save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
                 cv.SaveImage(save_file_name,img)
+                print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
+                number_of_saved_images =number_of_saved_images + 1
                 update = True
 
 
@@ -96,6 +98,6 @@ if __name__ == '__main__':
             print "Update Flag " + str(update)
             print "img type: "+str(type(img))
             print "cvm_img type: "+ str(type(cvm_img))
-            cv.SaveImage("../saved_images/sample.png",img)
+            cv.SaveImage("../saved_images/final_image.png",img)
             break
     cv.DestroyAllWindows()
