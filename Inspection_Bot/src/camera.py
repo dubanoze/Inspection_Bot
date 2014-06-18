@@ -40,9 +40,9 @@ if __name__ == '__main__':
     previous_img = None
     img = None
     number_of_saved_images = 0
-    similarity_value_list = [float(0)] * 30
-    
-    
+    similarity_value_list = [float(0)] * 10 #number of values changes variance
+    same_position = None
+    moving = None
     while True:
         key = cv.WaitKey(10)
         img = cv.QueryFrame(capture)
@@ -64,12 +64,29 @@ if __name__ == '__main__':
             h1=cv2.calcHist([gray],[0],None,[256],[0,256])
             h2=cv2.calcHist([pre_gray],[0],None,[256],[0,256])
             similarity_value = cv2.compareHist(h1,h2,method=cv.CV_COMP_CORREL)
-            print "Similarity Value = {0:.5f}".format(similarity_value)
+            #print "Similarity Value = {0:.5f}".format(similarity_value)
             similarity_value_list.insert(0, similarity_value)
             similarity_value_list.pop()
             variance_value = np.var(similarity_value_list)
-            print "Variance Value = {0:.5f}".format(variance_value)
+            #print "Variance Value = {0:.5f}".format(variance_value)
             
+            same_position = .99 < similarity_value and  similarity_value <= 1.0
+            #if same_position:
+            #    print "same position"
+            #else:
+            #    print "different position"
+            
+            moving =variance_value > .00001
+            #if moving:
+            #    print "moving"
+            #else:
+            #    print "not moving"
+            
+            if same_position == False and moving == False:
+                print "save file"
+            else:
+                print "don't save file"
+
         if key == 110: #n key to update image
             update=True
         if key == 27: #Esc key to exit
