@@ -81,11 +81,11 @@ if __name__ == '__main__':
             #else:
             #    print "different position"
             
-            moving =variance_value > .00001
-            #if moving:
-            #    print "moving"
-            #else:
-            #    print "not moving"
+            moving = variance_value > 100000
+            if moving:
+                print "moving"
+            else:
+                print "not moving"
             
             if same_position == False and moving == False:
                 date_and_timestamp = datetime.datetime.now().strftime('on %Y-%m-%d @ %H:%M:%S.%f %p')
