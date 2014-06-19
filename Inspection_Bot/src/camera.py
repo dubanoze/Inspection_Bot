@@ -48,7 +48,8 @@ if __name__ == '__main__':
     previous_histogram = None
     current_histogram =None
     saved_image_histogram = None
-    
+    saved_curve = None
+    pre_gray=None
     while True:
         img = cv.QueryFrame(capture)
            
@@ -63,6 +64,7 @@ if __name__ == '__main__':
             previous_histogram = current_histogram
             
             current_histogram=cv2.calcHist([gray],[0],None,[256],[0,256])
+
             
             if previous_histogram is not None:
                 difference_value = cv2.compareHist(previous_histogram,current_histogram,method=cv.CV_COMP_CHISQR)
@@ -79,12 +81,14 @@ if __name__ == '__main__':
             #    print "not moving"
             
             
-            
-            
-            
             if update:
                 saved_image_histogram = current_histogram
                 update=False
+            
+            
+            #if update:
+            #    saved_image_histogram = np.asarray(current_histogram[:])
+            #    update=False
             
             similarity_value = cv2.compareHist(saved_image_histogram,current_histogram,method=cv.CV_COMP_CORREL)
             
@@ -109,11 +113,13 @@ if __name__ == '__main__':
             #difference_value_list.pop()
             #variance_value = np.var(difference_value_list)
             #print "Variance Value = {0:.5f}".format(variance_value)
-            #saved_curve = hist_curve(saved_image_histogram)
+            
             curve = hist_curve(gray)
             
             cv2.imshow('live histogram',curve)
-            #cv2.imshow('saved image histogram',saved_curve)
+            if pre_gray is not None:
+                saved_curve = hist_curve(pre_gray)
+                cv2.imshow('saved image histogram',saved_curve)
             cv.ShowImage("camera", img)
             
             
@@ -139,6 +145,7 @@ if __name__ == '__main__':
                 cv.SaveImage(save_file_name,img)
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
+                pre_gray =gray
                 #print "saving file"
                 #update = True
             #else:
