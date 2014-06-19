@@ -2,7 +2,6 @@
 
 import cv2.cv as cv
 import cv2
-import array
 import datetime
 
 import numpy as np
@@ -37,18 +36,19 @@ if __name__ == '__main__':
     update = True
     cv.NamedWindow("camera", 1)
     cv.NamedWindow("live histogram",1)
+    cv.NamedWindow("saved image histogram",1)
     capture = cv.CaptureFromCAM(0)
     previous_img = None
     img = None
     number_of_saved_images = 0
-    similarity_value_list = [float(0)] * 10 #number of values changes variance
+    similarity_value_list = [float(0)] * 10 #number of similarity values to be saved
     same_position = None
     moving = None
     while True:
-        key = cv.WaitKey(10)
         img = cv.QueryFrame(capture)
-        cv.ShowImage("camera", img)      
+           
         if img is not None:
+            cv.ShowImage("camera", img)
             if update:
                 previous_img = cv.CloneImage(img)
                 update = False
@@ -92,12 +92,7 @@ if __name__ == '__main__':
                 update = True
 
 
-        if key == 110: #n key to update image
-            update=True
-        if key == 27: #Esc key to exit
-            print "Update Flag " + str(update)
-            print "img type: "+str(type(img))
-            print "cvm_img type: "+ str(type(cvm_img))
+        if cv.WaitKey(10) == 27: #Esc key to exit
             cv.SaveImage("../saved_images/final_image.png",img)
             break
     cv.DestroyAllWindows()

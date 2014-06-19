@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 output_file = "rambo.gcode"
-
+vector_count = 0
 if __name__ == '__main__':
     tree = ET.parse('RAMBo_mod.xml')
     root = tree.getroot()
@@ -34,6 +34,8 @@ if __name__ == '__main__':
         gcode_command=gcode_command+'\n'
         f.write("G4 P2000 \n")
         f.write(gcode_command)
+        vector_count=vector_count+1
+    print "final vector count =" + str(vector_count)
     f.close
     #print elements.tag
         #print elements.attrib
