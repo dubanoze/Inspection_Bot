@@ -41,9 +41,11 @@ if __name__ == '__main__':
     previous_img = None
     img = None
     number_of_saved_images = 0
-    similarity_value_list = [float(0)] * 10 #number of similarity values to be saved
+    difference_value = 0
+    difference_value_list = [float(0)] * 10 #number of similarity values to be saved
     same_position = None
     moving = None
+
     while True:
         img = cv.QueryFrame(capture)
            
@@ -60,16 +62,18 @@ if __name__ == '__main__':
             data = np.asarray(img[:,:])
             pre_curve = hist_curve(pre_gray)
             curve = hist_curve(gray)
+            
             cv2.imshow('live histogram',curve)
             cv2.imshow('saved image histogram',pre_curve)
             h1=cv2.calcHist([gray],[0],None,[256],[0,256])
             h2=cv2.calcHist([pre_gray],[0],None,[256],[0,256])
             similarity_value = cv2.compareHist(h1,h2,method=cv.CV_COMP_CORREL)
+            difference_value  = cv2.compareHist(h1,h2,method=cv.CV_COMP_CHISQR)
             #print "Similarity Value = {0:.5f}".format(similarity_value)
-            similarity_value_list.insert(0, similarity_value)
-            similarity_value_list.pop()
-            variance_value = np.var(similarity_value_list)
-            #print "Variance Value = {0:.5f}".format(variance_value)
+            difference_value_list.insert(0, difference_value)
+            difference_value_list.pop()
+            variance_value = np.var(difference_value_list)
+            print "Variance Value = {0:.5f}".format(variance_value)
             
             same_position = .99 < similarity_value and  similarity_value <= 1.0
             #if same_position:
@@ -87,10 +91,12 @@ if __name__ == '__main__':
                 date_and_timestamp = datetime.datetime.now().strftime('on %Y-%m-%d @ %H:%M:%S.%f %p')
                 save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
                 cv.SaveImage(save_file_name,img)
-                print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
+                #print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
                 update = True
-
+        
+        if cv.WaitKey(10) == 110: #n key to exit
+            update = True
 
         if cv.WaitKey(10) == 27: #Esc key to exit
             cv.SaveImage("../saved_images/final_image.png",img)
