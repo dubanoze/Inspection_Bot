@@ -5,6 +5,7 @@
 <path>/${PROJECT_DIR_NAME}/PCB_Information</path>
 <path>/${PROJECT_DIR_NAME}/gcode_generator</path>
 <path>/${PROJECT_DIR_NAME}/classifier</path>
+<path>/${PROJECT_DIR_NAME}/classifier_0</path>
 </pydev_pathproperty>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.7</pydev_property>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
