@@ -116,11 +116,7 @@ if __name__ == '__main__':
             
             curve = hist_curve(gray)
             
-            cv2.imshow('live histogram',curve)
-            if pre_gray is not None:
-                saved_curve = hist_curve(pre_gray)
-                cv2.imshow('saved image histogram',saved_curve)
-            cv.ShowImage("camera", img)
+
             
             
             #if update:
@@ -156,11 +152,17 @@ if __name__ == '__main__':
                 #print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 #number_of_saved_images =number_of_saved_images + 1
                 #update = True
-        
-        if cv.WaitKey(10) == 110: #n key to exit
+
+            if pre_gray is not None:
+                saved_curve = hist_curve(pre_gray)
+                cv2.imshow('saved image histogram',saved_curve)
+            cv.ShowImage("camera", img)   
+            cv2.imshow('live histogram',curve)
+        key = cv.WaitKey(10)     
+        if key == 110: #n key to exit
             update = True
 
-        if cv.WaitKey(10) == 27: #Esc key to exit
+        if key == 27: #Esc key to exit
             cv.SaveImage("../saved_images/final_image.png",img)
             break
     cv.DestroyAllWindows()
