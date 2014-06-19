@@ -85,7 +85,7 @@ if __name__ == '__main__':
             
             if same_position == False and moving == False:
                 date_and_timestamp = datetime.datetime.now().strftime('on %Y-%m-%d @ %H:%M:%S.%f %p')
-                save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
+                save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>5}".format(number_of_saved_images)))
                 cv.SaveImage(save_file_name,img)
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
