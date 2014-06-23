@@ -23,7 +23,7 @@ sudo apt-get install libopencv-dev
 sudo apt-get install python-opencv
 ```
 
-#####Install Skykit for classifier.py
+#####Install Skykit for classifier.py and find_shortest_path.py
 ```sh
 sudo apt-get install build-essential python-dev python-numpy python-setuptools python-scipy libatlas-dev libatlas3-base
 sudo apt-get install python-matplotlib
