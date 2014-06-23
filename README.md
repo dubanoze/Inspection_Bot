@@ -15,3 +15,10 @@ Modules Include:
 
 Installation
 ---
+
+######Install OpenCV for Camera.py
+```sh
+sudo apt-get update
+sudo apt-get install libopencv-dev
+sudo apt-get install python-opencv
+```
