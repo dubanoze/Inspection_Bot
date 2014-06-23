@@ -16,9 +16,16 @@ Modules Include:
 Installation
 ---
 
-######Install OpenCV for Camera.py
+#####Install OpenCV for Camera.py
 ```sh
 sudo apt-get update
 sudo apt-get install libopencv-dev
 sudo apt-get install python-opencv
+```
+
+#####Install Skykit for classifier.py
+```sh
+sudo apt-get install build-essential python-dev python-numpy python-setuptools python-scipy libatlas-dev libatlas3-base
+sudo apt-get install python-matplotlib
+sudo pip install -U scikit-learn
 ```
