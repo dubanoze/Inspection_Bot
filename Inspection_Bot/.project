@@ -15,4 +15,11 @@
 	<natures>
 		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>README.md</name>
+			<type>1</type>
+			<location>/home/richhohart/git/Inspection_Bot/README.md</location>
+		</link>
+	</linkedResources>
 </projectDescription>
