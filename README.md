@@ -1,9 +1,8 @@
 Inspection_Bot
 ==============
+Still in development...
 
 A collection of Python modules that help collect and analyze image data for the optical inspection of PCB boards. This software is particularly useful for RepRap 3D printing hardware. 
-
-Note: Still in development...
 
 Modules Include:
 - Camera:  Interfaces with a USB microscope that has replaced the plastic extruder of a 3D Printer.  The program detects whether the USB camera has moved to a new location and stopped moving long enough to obtain a clear photo.  Images are put in the “saved_images” directory. Note: The module acts independently of the software controlling the 3D printer.
