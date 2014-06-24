@@ -36,30 +36,46 @@ def Get_Hist_Info(current_image):
 
 
 if __name__ == '__main__':
-    save_current_image = True
-    cv.NamedWindow("camera", 1)
-    cv.NamedWindow("live histogram",1)
-    cv.NamedWindow("saved image histogram",1)
-    capture = cv.CaptureFromCAM(0)
-    current_image = None
-    number_of_saved_images = 0
-    difference_value = 0
-    difference_value_list = [float(0.0)]*10
-    same_position = None
-    moving = None
+
+    
+    #use to determine if two images are from the same location
+    similarity_value_threshold = .99
+    
+    #use to determine if the camera has moved over a given amount of time
+    variance_value_threshold = 50000
+    
+    #set home many past frames to check for camera movement 
+    number_of_frames_to_check =10
+    
+    #a list to store how much the camera frames change over time
+    frame_difference_list = [float(0.0)]*number_of_frames_to_check
+    
+    # a counter for saved image file names
+    number_of_saved_images = 0  
+    
+    #the the histograms used for calculation
+    #movement and position to zero
     previous_histogram = Make_Zero_Hist()
     current_histogram = Make_Zero_Hist()
     saved_image_histogram = Make_Zero_Hist()
-    saved_curve = None
     
-    variance_value_threshold = 50000
-    similarity_value_threshold = .99
+    #initialize the camera
+    capture = cv.CaptureFromCAM(0)
+    
+    #initialize the camera and histogram windows
+    cv.NamedWindow("camera", 1)
+    cv.NamedWindow("live histogram",1)
+    cv.NamedWindow("saved image histogram",1)
     
     while True:
         
-        current_image = cv.QueryFrame(capture)
+        current_image = cv.QueryFrame(capture) #get current image from usb camera
            
         if current_image is not None:
+            
+            #calculate if the camera is moving by comparing how much the 
+            # pixel values change for each frame over time.  The number of 
+            # frames that are compared is determined by the size of the frame_difference_list
             
             previous_histogram = current_histogram
             
@@ -67,11 +83,16 @@ if __name__ == '__main__':
             
             difference_value = cv2.compareHist(previous_histogram,current_histogram,method=cv.CV_COMP_CHISQR)
             
-            difference_value_list.insert(0, difference_value)
+            frame_difference_list.insert(0, difference_value) #add current value to the front of the list 
             
-            difference_value_list.pop()
+            frame_difference_list.pop() # remove the oldest value from the list
             
-            variance_value = np.var(difference_value_list)
+            
+            # the variance is use to measure large and sudden
+            # changes to the camera feed over time. This is used to determine if the 
+            # camera is moving or not
+            variance_value = np.var(frame_difference_list) 
+            
 
             moving = variance_value > variance_value_threshold
             
@@ -79,7 +100,8 @@ if __name__ == '__main__':
              
 
             
-
+            # Calculate if the camera is in the same position by comparing how similar the current pixel values are
+            # to the last saved image.  
             similarity_value = cv2.compareHist(saved_image_histogram,current_histogram,method=cv.CV_COMP_CORREL)
             
             same_position = similarity_value > similarity_value_threshold
@@ -87,13 +109,18 @@ if __name__ == '__main__':
             
             
             
-            
+            # if the camera is not in the same position and is not moving then save the current image
+            # and update the saved_image_histogram. 
             save_current_image =  ((same_position == False) and (moving == False))
 
             if save_current_image:
                 
                 saved_image_histogram = current_histogram
                 
+                #Right now every image is written immediately to the hard drive.  This might cause
+                #loss in performance if images are saved to quickly.  To avoid
+                #this the current image should be cloned and saved to a list buffer stored in RAM memory, then 
+                #cloned images be written to the hard drive when the cpu is not being overused.    
                 date_and_timestamp = datetime.datetime.now().strftime('on %Y-%m-%d @ %H:%M:%S.%f %p')
                 save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
                 if not os.path.exists(os.path.dirname(save_file_name)):
@@ -105,12 +132,12 @@ if __name__ == '__main__':
 
 
 
-
+            #show the current image, it's histogram, as well as the histogram of the last saved image.
             saved_curve = Generate_Histogram_Curve(saved_image_histogram)
             cv2.imshow('saved image histogram',saved_curve)
             
-            curve = Generate_Histogram_Curve(current_histogram)  
-            cv2.imshow('live histogram',curve)
+            current_curve = Generate_Histogram_Curve(current_histogram)  
+            cv2.imshow('live histogram',current_curve)
         
             cv.ShowImage("camera", current_image) 
  
