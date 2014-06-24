@@ -8,21 +8,19 @@ import numpy as np
 
 bins = np.arange(256).reshape(256,1)
 
-def hist_curve(im):
+
+
+
+def hist_curve_mod(hist_item):
     h = np.zeros((300,256,3))
-    if len(im.shape) == 2:
-        color = [(255,255,255)]
-    elif im.shape[2] == 3:
-        color = [ (255,0,0),(0,255,0),(0,0,255) ]
-    for ch, col in enumerate(color):
-        hist_item = cv2.calcHist([im],[ch],None,[256],[0,256])
-        cv2.normalize(hist_item,hist_item,0,255,cv2.NORM_MINMAX)
-        hist=np.int32(np.around(hist_item))
-        pts = np.int32(np.column_stack((bins,hist)))
-        cv2.polylines(h,[pts],False,col)
+    curve_hist = create_zero_histogram()
+    #hist_item = cv2.calcHist([im],[ch],None,[256],[0,256])
+    cv2.normalize(hist_item,curve_hist,0,255,cv2.NORM_MINMAX)
+    hist=np.int32(np.around(curve_hist))
+    pts = np.int32(np.column_stack((bins,hist)))
+    cv2.polylines(h,[pts],False,(255,255,255))
     y=np.flipud(h)
     return y
-
 
 def create_zero_histogram():
     size = 200, 200, 3
@@ -31,6 +29,8 @@ def create_zero_histogram():
     blank = cv2.cvtColor(zero_matrix,cv2.COLOR_BGR2GRAY)
     histogram=cv2.calcHist([blank],[0],None,[256],[0,256])
     return histogram
+
+
 
 if __name__ == '__main__':
     update = True
@@ -89,7 +89,7 @@ if __name__ == '__main__':
             
             same_position = similarity_value > similarity_value_threshold
 
-            curve = hist_curve(gray)
+            curve = hist_curve_mod(current_histogram)
             
 
 
@@ -105,8 +105,8 @@ if __name__ == '__main__':
                 pre_gray =gray
 
 
-            if pre_gray is not None:
-                saved_curve = hist_curve(pre_gray)
+            if saved_image_histogram is not None:
+                saved_curve = hist_curve_mod(saved_image_histogram)
                 cv2.imshow('saved image histogram',saved_curve)
             cv.ShowImage("camera", img)   
             cv2.imshow('live histogram',curve)
