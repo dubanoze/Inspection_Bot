@@ -55,10 +55,10 @@ if __name__ == '__main__':
            
         if img is not None:
             
-            #cvm_pre_img = np.asarray(previous_img[:,:])
+
             cvm_img = np.asarray(img[:,:])
             
-            #pre_gray = cv2.cvtColor(cvm_pre_img,cv2.COLOR_BGR2GRAY)
+
             gray = cv2.cvtColor(cvm_img,cv2.COLOR_BGR2GRAY)
             
             previous_histogram = current_histogram
@@ -72,67 +72,26 @@ if __name__ == '__main__':
             if len(difference_value_list) > 5:
                 difference_value_list.pop()
             variance_value = np.var(difference_value_list)
-            #print "Variance Value = {0:.5f}".format(variance_value)
+
             moving =variance_value > 50000
             
-            #if moving:
-            #    print "moving"
-            #else:
-            #    print "not moving"
+
             
             
             if update:
                 saved_image_histogram = current_histogram
                 update=False
             
-            
-            #if update:
-            #    saved_image_histogram = np.asarray(current_histogram[:])
-            #    update=False
+
             
             similarity_value = cv2.compareHist(saved_image_histogram,current_histogram,method=cv.CV_COMP_CORREL)
             
             same_position = similarity_value >.99
-            #print "Similarity Value = {0:.5f}".format(similarity_value)
-            
-            #if same_position:
-            #    print "same position"
-            #else:
-            #    print "different position"
-            #data = np.asarray(img[:,:])
-            
-            
-            #cv2.imshow('live histogram',curve)
-            #cv2.imshow('saved image histogram',pre_curve)
-            
-            #h2=cv2.calcHist([pre_gray],[0],None,[256],[0,256])
-            #similarity_value = cv2.compareHist(h1,h2,method=cv.CV_COMP_CORREL)
-            #difference_value  = cv2.compareHist(h1,h2,method=cv.CV_COMP_CHISQR)
-            #print "Similarity Value = {0:.5f}".format(similarity_value)
-            #difference_value_list.insert(0, similarity_value)
-            #difference_value_list.pop()
-            #variance_value = np.var(difference_value_list)
-            #print "Variance Value = {0:.5f}".format(variance_value)
-            
+
             curve = hist_curve(gray)
             
 
-            
-            
-            #if update:
-            #    previous_img = cv.CloneImage(img)
-            #    update = False
-            
-            #same_position = .99 < similarity_value and  similarity_value <= 1.0
-            #if same_position:
-            #    print "same position"
-            #else:
-            #    print "different position"
-            #moving =variance_value > .00001
-            #if moving:
-            #    print "moving"
-            #else:
-            #    print "not moving"
+
             
             if same_position == False and moving == False:
                 update = True
@@ -144,16 +103,7 @@ if __name__ == '__main__':
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
                 pre_gray =gray
-                #print "saving file"
-                #update = True
-            #else:
-                #print "don't save file"
-                #date_and_timestamp = datetime.datetime.now().strftime('on %Y-%m-%d @ %H:%M:%S.%f %p')
-                #save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
-                #cv.SaveImage(save_file_name,img)
-                #print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
-                #number_of_saved_images =number_of_saved_images + 1
-                #update = True
+
 
             if pre_gray is not None:
                 saved_curve = hist_curve(pre_gray)
