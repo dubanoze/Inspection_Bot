@@ -42,7 +42,7 @@ if __name__ == '__main__':
     img = None
     number_of_saved_images = 0
     difference_value = 0
-    difference_value_list = []
+    difference_value_list = [float(0.0)]*5
     same_position = None
     moving = None
     previous_histogram = create_zero_histogram()
@@ -70,8 +70,7 @@ if __name__ == '__main__':
             
             difference_value_list.insert(0, difference_value)
             
-            if len(difference_value_list) > 5:
-                difference_value_list.pop()
+            difference_value_list.pop()
             
             
             variance_value = np.var(difference_value_list)
