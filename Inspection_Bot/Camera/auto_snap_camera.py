@@ -6,12 +6,13 @@ import datetime
 import os
 import numpy as np
 
-bins = np.arange(256).reshape(256,1)
+
 
 
 
 
 def Generate_Histogram_Curve(hist_item):
+    bins = np.arange(256).reshape(256,1)
     h = np.zeros((300,256,3))
     curve_hist = Make_Zero_Hist()
     #hist_item = cv2.calcHist([im],[ch],None,[256],[0,256])
