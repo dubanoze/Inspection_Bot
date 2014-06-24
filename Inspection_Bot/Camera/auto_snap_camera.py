@@ -43,8 +43,8 @@ if __name__ == '__main__':
     saved_image_histogram = None
     saved_curve = None
     pre_gray=None
-    
-    
+    variance_value_threshold = 50000
+    similarity_value_threshold = .99
     
     while True:
         img = cv.QueryFrame(capture)
@@ -52,7 +52,7 @@ if __name__ == '__main__':
         if img is not None:
             
             cvm_img = np.asarray(img[:,:])
-
+            
             gray = cv2.cvtColor(cvm_img,cv2.COLOR_BGR2GRAY)
             
             previous_histogram = current_histogram
@@ -70,7 +70,7 @@ if __name__ == '__main__':
             
             variance_value = np.var(difference_value_list)
 
-            moving =variance_value > 50000
+            moving =variance_value > variance_value_threshold
             
 
              
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
             similarity_value = cv2.compareHist(saved_image_histogram,current_histogram,method=cv.CV_COMP_CORREL)
             
-            same_position = similarity_value >.99
+            same_position = similarity_value > similarity_value_threshold
 
             curve = hist_curve(gray)
             
