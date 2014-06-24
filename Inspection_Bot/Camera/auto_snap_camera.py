@@ -23,13 +23,6 @@ def hist_curve(im):
     y=np.flipud(h)
     return y
 
-def hist_lines(im):
-    if len(im.shape)!=2:
-        print "hist_lines applicable only for grayscale images"
-        #print "so converting image to grayscale for representation"
-        im = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
-    hist_item = cv2.calcHist([im],[0],None,[256],[0,256])
-    return hist_item
 
 
 if __name__ == '__main__':
