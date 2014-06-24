@@ -39,46 +39,46 @@ if __name__ == '__main__':
     cv.NamedWindow("saved image histogram",1)
     capture = cv.CaptureFromCAM(0)
     previous_img = None
-    current_image = None
+    img = None
     number_of_saved_images = 0
     difference_value = 0
-    difference_value_list = [float(0.0)]*5
+    difference_value_list = [float(0.0)]*10
     same_position = None
     moving = None
     previous_histogram = create_zero_histogram()
     current_histogram = create_zero_histogram()
     saved_image_histogram = create_zero_histogram()
     saved_curve = None
-    saved_gray=None
+    pre_gray=None
     variance_value_threshold = 50000
     similarity_value_threshold = .99
     
     while True:
-        current_image = cv.QueryFrame(capture)
+        img = cv.QueryFrame(capture)
            
-        if current_image is not None:
-            
-            #calculate whether the camera is moving
+        if img is not None:
             
             previous_histogram = current_histogram
             
-            current_cvm_img = np.asarray(current_image[:,:])
+            cvm_img = np.asarray(img[:,:])
             
-            current_gray_image = cv2.cvtColor(current_cvm_img,cv2.COLOR_BGR2GRAY)
+            gray = cv2.cvtColor(cvm_img,cv2.COLOR_BGR2GRAY)
             
-            current_histogram=cv2.calcHist([current_gray_image],[0],None,[256],[0,256])
+            current_histogram=cv2.calcHist([gray],[0],None,[256],[0,256])
             
+            #if previous_histogram is not None:
             difference_value = cv2.compareHist(previous_histogram,current_histogram,method=cv.CV_COMP_CHISQR)
             
             difference_value_list.insert(0, difference_value)
             
             difference_value_list.pop()
             
+            
             variance_value = np.var(difference_value_list)
 
             moving =variance_value > variance_value_threshold
             
-            #calculate whether the camera is in the same position of saved image
+
              
             if update:
                 saved_image_histogram = current_histogram
@@ -89,7 +89,7 @@ if __name__ == '__main__':
             
             same_position = similarity_value > similarity_value_threshold
 
-            curve = hist_curve(current_gray_image)
+            curve = hist_curve(gray)
             
 
 
@@ -99,20 +99,16 @@ if __name__ == '__main__':
                 save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
                 if not os.path.exists(os.path.dirname(save_file_name)):
                     os.makedirs(os.path.dirname(save_file_name))
-                cv.SaveImage(save_file_name,current_image)
+                cv.SaveImage(save_file_name,img)
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
-                saved_gray =current_gray_image
+                pre_gray =gray
 
 
-
-
-
-            #display current image and histogram information 
-            if saved_gray is not None:
-                saved_curve = hist_curve(saved_gray)
+            if pre_gray is not None:
+                saved_curve = hist_curve(pre_gray)
                 cv2.imshow('saved image histogram',saved_curve)
-            cv.ShowImage("camera", current_image)   
+            cv.ShowImage("camera", img)   
             cv2.imshow('live histogram',curve)
         
         
@@ -120,7 +116,7 @@ if __name__ == '__main__':
  
 
         if cv.WaitKey(10) == 27: #Esc key to exit
-            cv.SaveImage("../saved_images/final_image.png",current_image)
+            cv.SaveImage("../saved_images/final_image.png",img)
             break
     
     
