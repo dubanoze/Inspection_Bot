@@ -55,12 +55,12 @@ if __name__ == '__main__':
     number_of_saved_images = 0  
     
     #the the histograms used for calculation
-    #movement and position to zero
+    #movement and position. Initially set to zero
     previous_histogram = Make_Zero_Hist()
     current_histogram = Make_Zero_Hist()
     saved_image_histogram = Make_Zero_Hist()
     
-    #initialize the camera
+    #initialize the camera feed
     capture = cv.CaptureFromCAM(0)
     
     #initialize the camera and histogram windows
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     
     while True:
         
-        current_image = cv.QueryFrame(capture) #get current image from usb camera
+        current_image = cv.QueryFrame(capture) #get current image from camera
            
         if current_image is not None:
             
