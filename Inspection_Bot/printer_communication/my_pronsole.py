@@ -20,7 +20,7 @@ import traceback
 #from console_module import *
 import time
 from printrun.pronsole import *
-from multiprocessing import  Queue
+from multiprocessing import Queue
 
 
 class my_second_pronsole(pronsole):
@@ -32,14 +32,14 @@ def run_console(command_input,console_output):
 
     interp = my_second_pronsole()
     #interp.parse_cmdline(sys.argv[1:])
+    command = -1
     while True:
         #command = command_input.recv()
-        command = -1
+        
         
 
-        if not command_input.empty():
-            print "command recieved"
-            command = command_input.get(False)
+
+        command = command_input.get()
         
         #command=command[0]
         # these commands should be moved to my_second_pronsole for later
@@ -66,6 +66,8 @@ def run_console(command_input,console_output):
             interp.onecmd("disconnect")
         elif command==5:
             interp.onecmd("exit")
+            break;
+        else:
             break;
 
     interp.onecmd("exit")

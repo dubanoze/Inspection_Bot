@@ -5,7 +5,7 @@ import cv2
 import datetime
 import os
 import numpy as np
-
+from multiprocessing import Queue
 
 
 
@@ -36,9 +36,8 @@ def Get_Hist_Info(current_image):
     return current_histogram
 
 
-if __name__ == '__main__':
 
-    
+def Run_Camera(command_input=None,command_output=None):
     #use to determine if two images are from the same location
     similarity_value_threshold = .99
     
@@ -129,7 +128,9 @@ if __name__ == '__main__':
                 cv.SaveImage(save_file_name,current_image)
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
-
+                
+                if command_output is not None:
+                    pass
 
 
 
@@ -149,3 +150,7 @@ if __name__ == '__main__':
     
     
     cv.DestroyAllWindows()
+
+
+if __name__ == '__main__':
+    Run_Camera()
