@@ -66,8 +66,10 @@ def Run_Camera(command_input=None,command_output=None):
     cv.NamedWindow("camera", 1)
     cv.NamedWindow("live histogram",1)
     cv.NamedWindow("saved image histogram",1)
-    
+    cv.NamedWindow("difference histogram",1)
     while True:
+        
+        
         
         current_image = cv.QueryFrame(capture) #get current image from usb camera
            
@@ -143,6 +145,18 @@ def Run_Camera(command_input=None,command_output=None):
         
             cv.ShowImage("camera", current_image) 
  
+#             previous_image =  np.asarray(current_image[:,:])
+#             #previous_image=cv2.cvtColor(previous_image,cv2.COLOR_BGR2GRAY)
+#             #previous_image=previous_image.clone()
+#             current_image = cv.QueryFrame(capture)
+#             current_image=  np.asarray(current_image[:,:])
+#             #current_image=cv2.cvtColor(previous_image,cv2.COLOR_BGR2GRAY)
+#             
+#             new_image = np.absolute(previous_image-current_image)
+#             new_hist = Get_Hist_Info(new_image)
+#             new_curve = Generate_Histogram_Curve(new_hist)
+            difference_hist = Generate_Histogram_Curve(current_histogram-saved_image_histogram)
+            cv2.imshow('difference histogram',difference_hist)
 
         if cv.WaitKey(10) == 27: #Esc key to exit
             cv.SaveImage("../saved_images/final_image.png",current_image)
