@@ -38,8 +38,9 @@ def Get_Hist_Info(current_image):
 
 
 def Run_Camera(command_input=None,command_output=None):
+    print "starting camera!"
     #use to determine if two images are from the same location
-    similarity_value_threshold = .99
+    similarity_value_threshold = .998 #should be closer to .99
     
     #use to determine if the camera has moved over a given amount of time
     variance_value_threshold = 50000
@@ -114,7 +115,7 @@ def Run_Camera(command_input=None,command_output=None):
             # if the camera is not in the same position and is not moving then save the current image
             # and update the saved_image_histogram. 
             save_current_image =  ((same_position == False) and (moving == False))
-
+            #print("sim = {0:f} var = {1:f}".format(similarity_value,variance_value))
             if save_current_image:
                 
                 saved_image_histogram = current_histogram
@@ -132,7 +133,7 @@ def Run_Camera(command_input=None,command_output=None):
                 number_of_saved_images =number_of_saved_images + 1
                 
                 if command_output is not None:
-                    pass
+                    command_input.put("ready")
 
 
 
@@ -164,6 +165,8 @@ def Run_Camera(command_input=None,command_output=None):
     
     
     cv.DestroyAllWindows()
+    if command_output is not None:
+        command_input.put("exit")
 
 
 if __name__ == '__main__':

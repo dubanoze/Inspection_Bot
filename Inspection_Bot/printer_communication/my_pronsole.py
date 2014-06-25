@@ -21,18 +21,39 @@ import traceback
 import time
 from printrun.pronsole import *
 from multiprocessing import Queue
-
+import re
+def load_vectors():
+    vector_gcodes=[]
+    try:
+        f = open("../shortest_path/best_found_tour.txt")
+    except:
+        f = open("./shortest_path/best_found_tour.txt")
+    for line in f:
+        vec=re.findall(r'\d+.\d+', line)
+        command = "G1 X{0:.2f} Y{1:.2f} F1000".format(float(vec[0]),float(vec[1]))
+        vector_gcodes.append(command)
+    f.close()
+    return vector_gcodes
 
 class my_second_pronsole(pronsole):
     def __init__(self):
         pronsole.__init__(self)
         pronsole.use_rawinput=False
 
-def run_console(command_input,console_output):
+def run_console(command_input=None,console_output=None):
 
     interp = my_second_pronsole()
     #interp.parse_cmdline(sys.argv[1:])
-    command = -1
+    #command = -1
+    
+    #gcodes=load_vectors()
+    #for l in gcodes:
+    #    print l
+    
+    command_line = 0
+    
+    gcodes=[]
+    
     while True:
         #command = command_input.recv()
         
@@ -43,31 +64,31 @@ def run_console(command_input,console_output):
         
         #command=command[0]
         # these commands should be moved to my_second_pronsole for later
-        if command==0:
-            try:
-                #interp.cmdloop()
-                print "trying to connect"
-                interp.onecmd("connect")
-                #time.sleep(1.0)
-        
-            except SystemExit:
-                interp.p.disconnect()
-            except:
-                print _("Caught an exception, exiting:")
-                traceback.print_exc()
-                interp.p.disconnect()
-        elif command==1:
+        if command == 'connect':
+            interp.onecmd("connect")
             interp.onecmd("G28")
-        elif command==2:
-            interp.onecmd("G0 X100 Y100 F2000")
-        elif command==3:
+        elif command=='exit':
+            #interp.onecmd("disconnect")
             interp.onecmd("M84")
-        elif command==4:
-            interp.onecmd("disconnect")
-        elif command==5:
             interp.onecmd("exit")
-            break;
+            break
+        elif command=='load':
+            print "loading vectors"
+            gcodes=load_vectors()
+        elif command=='next':
+            print "sending vector to printer"
+            if command_line<len(gcodes):
+                printer_command = gcodes[command_line]
+                interp.onecmd(printer_command)
+                command_line=command_line+1
+            else:
+                print "no more commands"
+                #interp.onecmd("disconnect")
+                interp.onecmd("exit")
         else:
-            break;
+            interp.onecmd(command)
+            
+    
 
-    interp.onecmd("exit")
+if __name__ == '__main__':
+    run_console()

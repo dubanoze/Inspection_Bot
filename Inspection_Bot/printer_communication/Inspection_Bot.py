@@ -39,15 +39,11 @@ if __name__ == '__main__':
     
     # test by entering numbers 0, 1,2,3,4
     while True:
-        try:
-            printer_command=int(raw_input('Input:'))
-            q.put(printer_command)
-        except ValueError:
-            print "Not a number"
-        
+
+        printer_command=raw_input('Input:')
         main_conn.send(printer_command)
         
-        if printer_command==5:
+        if printer_command=='exit':
             break
    
     
