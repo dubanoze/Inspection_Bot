@@ -34,16 +34,21 @@ def run_console(command_input,console_output):
     #interp.parse_cmdline(sys.argv[1:])
     while True:
         #command = command_input.recv()
-         
-        timeout=None
-        command = command_input.get(False)
+        command = -1
+        
+
+        if not command_input.empty():
+            print "command recieved"
+            command = command_input.get(False)
+        
         #command=command[0]
         # these commands should be moved to my_second_pronsole for later
         if command==0:
             try:
                 #interp.cmdloop()
+                print "trying to connect"
                 interp.onecmd("connect")
-                time.sleep(1.0)
+                #time.sleep(1.0)
         
             except SystemExit:
                 interp.p.disconnect()
@@ -56,8 +61,10 @@ def run_console(command_input,console_output):
         elif command==2:
             interp.onecmd("G0 X100 Y100 F2000")
         elif command==3:
-            interp.onecmd("disconnect")
+            interp.onecmd("M84")
         elif command==4:
+            interp.onecmd("disconnect")
+        elif command==5:
             interp.onecmd("exit")
             break;
 

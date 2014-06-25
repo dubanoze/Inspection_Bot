@@ -35,7 +35,9 @@ if __name__ == '__main__':
     #run_console(sys.stdin,sys.stdout)
     p = Process(target=run_console,args=(q,sys.stdout))
     
+    p.start()
     
+    # test by entering numbers 0, 1,2,3,4
     while True:
         try:
             printer_command=int(raw_input('Input:'))
@@ -45,10 +47,10 @@ if __name__ == '__main__':
         
         main_conn.send(printer_command)
         
-        if printer_command==4:
+        if printer_command==5:
             break
    
-    p.start()
+    
 #     stdin_0 = open("stdin_commands.txt","r")
 #     stdout_0 = sys.stdout
 #     p = Process(target=run_console,args=(stdin_0,stdout_0))
