@@ -114,7 +114,7 @@ def Run_Camera(command_input=None,command_output=None):
             # if the camera is not in the same position and is not moving then save the current image
             # and update the saved_image_histogram. 
             save_current_image =  ((same_position == False) and (moving == False))
-
+            
             if save_current_image:
                 
                 saved_image_histogram = current_histogram
