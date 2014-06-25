@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from multiprocessing import Process, Pipe
+from multiprocessing import Process, Pipe,Queue
 
 from camera import *
 from my_pronsole import *
@@ -30,7 +30,25 @@ if __name__ == '__main__':
     #stdout=open("stdout_commands.txt","w")
     #time.sleep(1.0)
     #stdin_0 = sys.stdin
-    run_console(sys.stdin,sys.stdout)
+    printer_conn, main_conn = Pipe()
+    q=Queue()
+    #run_console(sys.stdin,sys.stdout)
+    p = Process(target=run_console,args=(q,sys.stdout))
+    
+    
+    while True:
+        try:
+            printer_command=int(raw_input('Input:'))
+            q.put(printer_command)
+        except ValueError:
+            print "Not a number"
+        
+        main_conn.send(printer_command)
+        
+        if printer_command==4:
+            break
+   
+    p.start()
 #     stdin_0 = open("stdin_commands.txt","r")
 #     stdout_0 = sys.stdout
 #     p = Process(target=run_console,args=(stdin_0,stdout_0))
