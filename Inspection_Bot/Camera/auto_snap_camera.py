@@ -68,6 +68,9 @@ def Run_Camera(command_input=None,command_output=None):
     cv.NamedWindow("live histogram",1)
     cv.NamedWindow("saved image histogram",1)
     cv.NamedWindow("difference histogram",1)
+    
+    ready_and_waiting = False
+    waiting_counter = 0
     while True:
         
         
@@ -132,11 +135,24 @@ def Run_Camera(command_input=None,command_output=None):
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
                 
-                if command_output is not None:
-                    command_input.put("ready")
-
-
-
+                #if command_output is not None:
+                 #   command_input.put("ready")
+            
+            
+            ready_and_waiting = (same_position == True and moving == False)
+            
+            if ready_and_waiting:
+                waiting_counter = waiting_counter+1
+                if waiting_counter == 1:
+                    if command_output is not None:
+                        command_input.put("ready")
+                elif waiting_counter>10:
+                    waiting_counter = 0
+            else:
+                waiting_counter = 0
+                
+            
+            
             #show the current image, it's histogram, as well as the histogram of the last saved image.
             saved_curve = Generate_Histogram_Curve(saved_image_histogram)
             cv2.imshow('saved image histogram',saved_curve)
