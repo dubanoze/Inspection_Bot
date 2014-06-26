@@ -36,7 +36,7 @@ def Get_Hist_Info(current_image):
     return current_histogram
 
 
-
+# use cvCloneImage() to make a more preminant copy for reading and writing  
 def Run_Camera(command_input=None,command_output=None):
     print "starting camera!"
     #use to determine if two images are from the same location
@@ -46,7 +46,7 @@ def Run_Camera(command_input=None,command_output=None):
     variance_value_threshold = 50000
     
     #set home many past frames to check for camera movement 
-    number_of_frames_to_check =5
+    number_of_frames_to_check =10
     
     reminder_threshold = 10
     #a list to store how much the camera frames change over time
@@ -133,7 +133,8 @@ def Run_Camera(command_input=None,command_output=None):
                 save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
                 if not os.path.exists(os.path.dirname(save_file_name)):
                     os.makedirs(os.path.dirname(save_file_name))
-                cv.SaveImage(save_file_name,current_image)
+                cv.CloneImage(current_image)
+                #cv.SaveImage(save_file_name,current_image)
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
                 
