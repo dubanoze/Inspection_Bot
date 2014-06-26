@@ -40,14 +40,15 @@ def Get_Hist_Info(current_image):
 def Run_Camera(command_input=None,command_output=None):
     print "starting camera!"
     #use to determine if two images are from the same location
-    similarity_value_threshold = .998 #should be closer to .99
+    similarity_value_threshold = .99 #should be closer to .99
     
     #use to determine if the camera has moved over a given amount of time
     variance_value_threshold = 50000
     
     #set home many past frames to check for camera movement 
-    number_of_frames_to_check =10
+    number_of_frames_to_check =5
     
+    reminder_threshold = 10
     #a list to store how much the camera frames change over time
     frame_difference_list = [float(0.0)]*number_of_frames_to_check
     
@@ -62,12 +63,13 @@ def Run_Camera(command_input=None,command_output=None):
     
     #initialize the camera
     capture = cv.CaptureFromCAM(0)
-    
+    display_windows = False
     #initialize the camera and histogram windows
-    cv.NamedWindow("camera", 1)
-    cv.NamedWindow("live histogram",1)
-    cv.NamedWindow("saved image histogram",1)
-    cv.NamedWindow("difference histogram",1)
+    if display_windows:
+        cv.NamedWindow("camera", 1)
+        cv.NamedWindow("live histogram",1)
+        cv.NamedWindow("saved image histogram",1)
+        cv.NamedWindow("difference histogram",1)
     
     ready_and_waiting = False
     waiting_counter = 0
@@ -146,7 +148,7 @@ def Run_Camera(command_input=None,command_output=None):
                 if waiting_counter == 1:
                     if command_output is not None:
                         command_input.put("ready")
-                elif waiting_counter>10:
+                elif waiting_counter>reminder_threshold:
                     waiting_counter = 0
             else:
                 waiting_counter = 0
@@ -154,13 +156,17 @@ def Run_Camera(command_input=None,command_output=None):
             
             
             #show the current image, it's histogram, as well as the histogram of the last saved image.
-            saved_curve = Generate_Histogram_Curve(saved_image_histogram)
-            cv2.imshow('saved image histogram',saved_curve)
+            if display_windows:
+                saved_curve = Generate_Histogram_Curve(saved_image_histogram)
+                cv2.imshow('saved image histogram',saved_curve)
+                
+                current_curve = Generate_Histogram_Curve(current_histogram)  
+                cv2.imshow('live histogram',current_curve)
             
-            current_curve = Generate_Histogram_Curve(current_histogram)  
-            cv2.imshow('live histogram',current_curve)
-        
-            cv.ShowImage("camera", current_image) 
+                cv.ShowImage("camera", current_image) 
+                
+                difference_hist = Generate_Histogram_Curve(current_histogram-saved_image_histogram)
+                cv2.imshow('difference histogram',difference_hist)
  
 #             previous_image =  np.asarray(current_image[:,:])
 #             #previous_image=cv2.cvtColor(previous_image,cv2.COLOR_BGR2GRAY)
@@ -172,8 +178,7 @@ def Run_Camera(command_input=None,command_output=None):
 #             new_image = np.absolute(previous_image-current_image)
 #             new_hist = Get_Hist_Info(new_image)
 #             new_curve = Generate_Histogram_Curve(new_hist)
-            difference_hist = Generate_Histogram_Curve(current_histogram-saved_image_histogram)
-            cv2.imshow('difference histogram',difference_hist)
+            
 
         if cv.WaitKey(10) == 27: #Esc key to exit
             cv.SaveImage("../saved_images/final_image.png",current_image)
