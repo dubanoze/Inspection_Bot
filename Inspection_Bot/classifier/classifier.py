@@ -3,6 +3,7 @@ import cv2
 
 #a simple svm classifier using 4 images to train and one to test
 # uses the grayscale histogram of the entire image but better feature selection to be added later. 
+#Note: repeat svm test over time to decrease error rates.  Use probability perdiction base on accuracy rates. 
 if __name__ == '__main__':
     good_image_1 =  cv2.imread("./samples/good-1.jpg")
     good_image_2 = cv2.imread("./samples/good-2.jpg")

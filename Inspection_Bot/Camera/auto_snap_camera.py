@@ -26,10 +26,10 @@ def Generate_Histogram_Curve(hist_item):
 def Make_Zero_Hist():
     size = 200, 200, 3
     zero_matrix = np.zeros(size, dtype=np.uint8)
-    histogram=Get_Hist_Info(zero_matrix)
+    histogram=Get_Gray_Hist_Info(zero_matrix)
     return histogram
 
-def Get_Hist_Info(current_image):
+def Get_Gray_Hist_Info(current_image):
     cvm_img = np.asarray(current_image[:,:])
     gray = cv2.cvtColor(cvm_img,cv2.COLOR_BGR2GRAY)
     current_histogram=cv2.calcHist([gray],[0],None,[256],[0,256])
@@ -80,7 +80,7 @@ if __name__ == '__main__':
             
             previous_histogram = current_histogram
             
-            current_histogram=Get_Hist_Info(current_image)
+            current_histogram=Get_Gray_Hist_Info(current_image)
             
             difference_value = cv2.compareHist(previous_histogram,current_histogram,method=cv.CV_COMP_CHISQR)
             
