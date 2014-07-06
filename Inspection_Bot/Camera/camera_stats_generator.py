@@ -31,7 +31,7 @@ def Get_Color_Hist(im):
 
 
 if __name__ == '__main__':
-    experiment_type = 2
+    experiment_type = 1
     
     if experiment_type==1:
         trial_durration = 10 #seconds
