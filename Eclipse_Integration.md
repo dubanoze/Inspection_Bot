@@ -22,7 +22,15 @@ Eclipse Integration
 ![Alt text][import_screen]
 
 
-5. 
+5. Select Clone URI
+
+![Alt text][clone_screen]
+
+6. Enter in the github http link into the URI field.  The rest should autocomplete
+
+![Alt text][uri_screen]
+
+
 
 [Open_Marketplace]: /Eclipse_Integration_Screen_Captures/Eclipse_Marketplace.png
 
@@ -30,3 +38,6 @@ Eclipse Integration
 
 [import_screen]: /Eclipse_Integration_Screen_Captures/Import_screen.png
 
+[clone_screen]: /Eclipse_Integration_Screen_Captures/clone_screen.png
+
+[uri_screen]: /Eclipse_Integration_Screen_Captures/uri_host_screen.png
