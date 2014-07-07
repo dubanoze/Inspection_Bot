@@ -24,9 +24,10 @@ sudo apt-get install python-opencv
 
 #####Install Skykit for classifier.py and find_shortest_path.py
 ```sh
-sudo apt-get install build-essential python-dev python-numpy python-setuptools python-scipy libatlas-dev libatlas3-base
+sudo apt-get install build-essential python-dev python-numpy python-setuptools python-scipy 
 sudo apt-get install python-matplotlib
 sudo pip install -U scikit-learn
 ```
+Note libatlas-dev libatlas3-base are recommended for Scikit but they don't seem to install properly.  Luckily they don't seem nessisary for running scikit function in inspection bot. 
 
 #####See Eclipse Integration for how to set up a integrated development environment to run and edit inspection bot programs. 
