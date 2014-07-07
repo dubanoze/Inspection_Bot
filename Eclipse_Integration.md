@@ -54,7 +54,7 @@ On the import project screen leave the project name as its default and click 'Fi
 
 Run Project
 ---
-Note: When running a python program for the first time, eclipse may ask you to configure the interpeter.  If it does select 'autoconfigure' when prompted.
+**Important!** When running a python program for the first time, eclipse may ask you to configure the interpeter.  If it does select 'autoconfigure' when prompted.
 
 Right click on the project folder and select Pydev --> Set as Pydev Project
 
