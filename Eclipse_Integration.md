@@ -64,7 +64,7 @@ Go to the Camera directory and right click on auto_snap_camera.  Then select Run
 
 ![Alt text][run_project]
 
-If USB microscope is connected to the computer, the program should start running and begin saving images to the saved_images directory.  
+If USB microscope is connected to the computer, the program should start running and begin saving images to the 'saved_images' directory. Right click on the 'save_images' directory and click 'Refresh' to see the saved images.    
 
 ![Alt text][run_camera]
 
