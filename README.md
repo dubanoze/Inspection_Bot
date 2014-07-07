@@ -28,3 +28,5 @@ sudo apt-get install build-essential python-dev python-numpy python-setuptools p
 sudo apt-get install python-matplotlib
 sudo pip install -U scikit-learn
 ```
+
+#####See Eclipse Integration for how to set up a integrated development environment to run and edit inspection bot programs. 
