@@ -31,3 +31,8 @@ sudo pip install -U scikit-learn
 Note libatlas-dev libatlas3-base are recommended for Scikit but they don't seem to install properly.  Luckily they shouldn't be nessisary for running scikit function in inspection bot. 
 
 #####See Eclipse Integration for how to set up a integrated development environment to run and edit inspection bot programs. 
+
+Notes
+---
+
+- Make sure that camera setup has sufficient light.  Recommend using a incandescent light source until camera motion detection has been prefected. 
