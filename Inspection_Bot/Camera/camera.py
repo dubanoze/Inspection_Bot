@@ -38,8 +38,8 @@ def Make_Zero_Hist():
 def Get_Gray_Hist_Info(current_image):
     cvm_img = np.asarray(current_image[:,:])
     gray = cv2.cvtColor(cvm_img,cv2.COLOR_BGR2GRAY)
-    current_histogram=cv2.calcHist([gray],[0],None,[256],[0,256])
-    return current_histogram
+    current_color_histogram=cv2.calcHist([gray],[0],None,[256],[0,256])
+    return current_color_histogram
 
 
 
@@ -49,36 +49,37 @@ if __name__ == '__main__':
     capture = cv.CaptureFromCAM(0)
     
     
-    previous_histogram = [Make_Zero_Hist(),Make_Zero_Hist(),Make_Zero_Hist()]
-    current_histogram = [Make_Zero_Hist(),Make_Zero_Hist(),Make_Zero_Hist()]
+    previous_color_histogram = [Make_Zero_Hist(),Make_Zero_Hist(),Make_Zero_Hist()]
+    current_color_histogram = [Make_Zero_Hist(),Make_Zero_Hist(),Make_Zero_Hist()]
     
     pkl_file = open('../classifier/svm_classifier.pkl','rb')
     
     clf = pickle.load(pkl_file)
     
+    stationary_counter = 0
     while True:
         img = cv.QueryFrame(capture)
         
         
-        previous_histogram =current_histogram
+        previous_color_histogram =current_color_histogram
         
-        current_histogram=Get_Color_Hist(img)
+        current_color_histogram=Get_Color_Hist(img)
         measurement = []
         for channel in range(0,3):
             
-            correl_value = cv2.compareHist(previous_histogram[channel],current_histogram[channel],method=cv.CV_COMP_CORREL)
+            correl_value = cv2.compareHist(previous_color_histogram[channel],current_color_histogram[channel],method=cv.CV_COMP_CORREL)
             measurement.append(correl_value)
             #cursor.execute("""INSERT INTO {0:} (measurement) VALUES ({1:f});""".format(measurement_list[0],correl_value))
             #c.execute("""INSERT INTO corrilation value VALUES ({0:f});""".format(correl_value))
-            #chi_sqr_value=cv2.compareHist(previous_histogram[channel],current_histogram[channel],method=cv.CV_COMP_CHISQR)
+            #chi_sqr_value=cv2.compareHist(previous_color_histogram[channel],current_color_histogram[channel],method=cv.CV_COMP_CHISQR)
             #measurement.append(chi_sqr_value)
             #cursor.execute("""INSERT INTO {0:} (measurement) VALUES ({1:f});""".format(measurement_list[1],chi_sqr_value))
             
-            intersect_value =cv2.compareHist(previous_histogram[channel],current_histogram[channel],method=cv.CV_COMP_INTERSECT)
+            intersect_value =cv2.compareHist(previous_color_histogram[channel],current_color_histogram[channel],method=cv.CV_COMP_INTERSECT)
             measurement.append(intersect_value)
             #cursor.execute("""INSERT INTO {0:} (measurement) VALUES ({1:f});""".format(measurement_list[2],intersect_value))
             
-            bhatta_value= cv2.compareHist(previous_histogram[channel],current_histogram[channel],method=cv.CV_COMP_BHATTACHARYYA)
+            bhatta_value= cv2.compareHist(previous_color_histogram[channel],current_color_histogram[channel],method=cv.CV_COMP_BHATTACHARYYA)
             measurement.append(bhatta_value)
             
             
