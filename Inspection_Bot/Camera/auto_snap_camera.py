@@ -130,7 +130,7 @@ if __name__ == '__main__':
                 #print 'stationary'
                 stationary_counter=stationary_counter+1
             
-            moving =stationary_counter<5
+            moving =stationary_counter<3
             
 
             previous_histogram=current_histogram
