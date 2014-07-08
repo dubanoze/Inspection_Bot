@@ -21,7 +21,7 @@ if __name__ == '__main__':
         gcode_move_command="G0 X{0:.2f} Y{1:.2f} F3000".format(x,y)
         commands.append(gcode_move_command)
         #f.write(gcode_move_command+"\n")
-        gcode_wait_command="G4 P500"
+        gcode_wait_command="G4 P1000"
         commands.append(gcode_wait_command)
     
     commands.append("M84")
