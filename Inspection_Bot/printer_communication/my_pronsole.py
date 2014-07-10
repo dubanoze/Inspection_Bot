@@ -23,7 +23,9 @@ from printrun.pronsole import *
 from multiprocessing import Queue
 import re
 def load_vectors():
-    vector_gcodes=[]
+    vector_gcodes=['G28 X F2000','G4 P1000','G28 Y F2000','G4 P1000']
+    
+
     try:
         f = open("../shortest_path/best_found_tour.txt")
     except:
@@ -53,7 +55,10 @@ def run_console(command_input=None,console_output=None):
     command_line = 0
     
     gcodes=[]
+    gcodes=load_vectors()
     
+    interp.onecmd("connect")
+    interp.onecmd("G28")
     while True:
         #command = command_input.recv()
         
@@ -64,18 +69,8 @@ def run_console(command_input=None,console_output=None):
         
         #command=command[0]
         # these commands should be moved to my_second_pronsole for later
-        if command == 'connect':
-            interp.onecmd("connect")
-            interp.onecmd("G28")
-        elif command=='exit':
-            #interp.onecmd("disconnect")
-            interp.onecmd("M84")
-            interp.onecmd("exit")
-            break
-        elif command=='load':
-            print "loading vectors"
-            gcodes=load_vectors()
-        elif command=='next':
+
+        if command=='next':
             print "sending vector to printer"
             if command_line<len(gcodes):
                 printer_command = gcodes[command_line]
@@ -83,12 +78,13 @@ def run_console(command_input=None,console_output=None):
                 command_line=command_line+1
             else:
                 print "no more commands"
-                #interp.onecmd("disconnect")
-                interp.onecmd("exit")
-        else:
-            interp.onecmd(command)
+                break;
+        if command=='exit':
+            break;
             
-    
+    interp.onecmd("M84")
+    interp.onecmd("disconnect")
+    interp.onecmd("exit")
 
 if __name__ == '__main__':
     run_console()
