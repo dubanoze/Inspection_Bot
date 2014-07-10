@@ -23,16 +23,17 @@ from printrun.pronsole import *
 from multiprocessing import Queue
 import re
 def points():
-    gcodes=['G28 X F2000','G4 P1000','G28 Y F2000','G4 P1000']
+    gcodes=["G4 P2000","G28 XY F2000"]
     
-
+    x_offset = 27.10
+    y_offset = 11.11
     try:
         f = open("../shortest_path/best_found_tour.txt")
     except:
         f = open("./shortest_path/best_found_tour.txt")
     for line in f:
         vec=re.findall(r'\d+.\d+', line)
-        command = "G1 X{0:.2f} Y{1:.2f} F1000".format(float(vec[0]),float(vec[1]))
+        command = "G1 X{0:.2f} Y{1:.2f} F2000".format(float(vec[0])+x_offset,float(vec[1])+y_offset)
         gcodes.append(command)
     f.close()
     return gcodes
@@ -55,7 +56,8 @@ def run_console(command_input=None,console_output=None):
     gcodes=points()
     
     interp.onecmd("connect")
-    interp.onecmd("G28")
+    #interp.onecmd("G28 X F2000")
+    #interp.onecmd("G28 Y F2000")
     while True:
         #command = command_input.recv()
         
