@@ -37,14 +37,14 @@ def load_vectors():
     f.close()
     return vector_gcodes
 
-class my_second_pronsole(pronsole):
+class program_controlled_pronsole(pronsole):
     def __init__(self):
         pronsole.__init__(self)
         pronsole.use_rawinput=False
 
 def run_console(command_input=None,console_output=None):
 
-    interp = my_second_pronsole()
+    interp = program_controlled_pronsole()
     #interp.parse_cmdline(sys.argv[1:])
     #command = -1
     
@@ -68,7 +68,7 @@ def run_console(command_input=None,console_output=None):
         command = command_input.get()
         
         #command=command[0]
-        # these commands should be moved to my_second_pronsole for later
+        # these commands should be moved to program_controlled_pronsole for later
 
         if command=='next':
             print "sending vector to printer"
