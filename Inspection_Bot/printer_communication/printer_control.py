@@ -22,8 +22,8 @@ import time
 from printrun.pronsole import *
 from multiprocessing import Queue
 import re
-def load_vectors():
-    vector_gcodes=['G28 X F2000','G4 P1000','G28 Y F2000','G4 P1000']
+def points():
+    gcodes=['G28 X F2000','G4 P1000','G28 Y F2000','G4 P1000']
     
 
     try:
@@ -33,9 +33,11 @@ def load_vectors():
     for line in f:
         vec=re.findall(r'\d+.\d+', line)
         command = "G1 X{0:.2f} Y{1:.2f} F1000".format(float(vec[0]),float(vec[1]))
-        vector_gcodes.append(command)
+        gcodes.append(command)
     f.close()
-    return vector_gcodes
+    return gcodes
+
+
 
 class program_controlled_pronsole(pronsole):
     def __init__(self):
@@ -45,17 +47,12 @@ class program_controlled_pronsole(pronsole):
 def run_console(command_input=None,console_output=None):
 
     interp = program_controlled_pronsole()
-    #interp.parse_cmdline(sys.argv[1:])
-    #command = -1
     
-    #gcodes=load_vectors()
-    #for l in gcodes:
-    #    print l
     
     command_line = 0
     
     gcodes=[]
-    gcodes=load_vectors()
+    gcodes=points()
     
     interp.onecmd("connect")
     interp.onecmd("G28")

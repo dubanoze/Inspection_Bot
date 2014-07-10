@@ -9,24 +9,6 @@ import numpy as np
 from multiprocessing import Queue
 
 
-bins = np.arange(256).reshape(256,1)
-
-def get_color_histograms(im):
-    h = np.zeros((300,256,3))
-    histograms = []
-    if len(im.shape) == 2:
-        color = [(255,255,255)]
-    elif im.shape[2] == 3:
-        color = [ (255,0,0),(0,255,0),(0,0,255) ]
-    for ch, col in enumerate(color):
-        hist_item = cv2.calcHist([im],[ch],None,[256],[0,256])
-        histograms.append(hist_item)
-        #cv2.normalize(hist_item,hist_item,0,255,cv2.NORM_MINMAX)
-        #hist=np.int32(np.around(hist_item))
-        #pts = np.int32(np.column_stack((bins,hist)))
-        #cv2.polylines(h,[pts],False,col)
-    #y=np.flipud(h)
-    return histograms
 
 
 def Run_Camera_Test(command_input=None,command_output=None):
