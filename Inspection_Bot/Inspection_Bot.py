@@ -3,11 +3,11 @@
 from multiprocessing import Process,Queue
 
 #from camera import *
-from printer_communication.my_pronsole import *
+from printer_communication.printer_control import *
 import time
 
 #sys.path.append("..")
-from Camera.camera import *
+from Camera.camera_sync_with_printer import *
 
 
 import cv2
