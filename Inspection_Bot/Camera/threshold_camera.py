@@ -11,10 +11,13 @@ import cv2.cv as cv
 if __name__ == '__main__':
     cv.NamedWindow("camera", 1)
     
-    capture = cv.CaptureFromCAM(0)
+    capture = cv2.VideoCapture(0)
     
+    width= capture.get(3)
+    height = capture.get(4)
+    camera_center = (width/2,height)
     while True:
-        img = cv.QueryFrame(capture)
+        ret, frame = capture.read()
         TARGET_COLOR_MIN = np.array([00, 4.4217581216490842, 128.4186480862943],np.uint8) #part center
         TARGET_COLOR_MAX = np.array([31.6015625, 82.876236233722324, 207.21003743583384],np.uint8)
 #        TARGET_COLOR_MIN = np.array([40, 0,0],np.uint8) #background Definitely use
@@ -23,12 +26,12 @@ if __name__ == '__main__':
 #        TARGET_COLOR_MIN = np.array([0, 0,0],np.uint8) #metal contacts
 #        TARGET_COLOR_MAX = np.array([255,20,255],np.uint8)
  
-        frame = np.asarray(img[:,:])
+        #frame = np.asarray(img[:,:])
         
         frameHSV = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         frameThreshold = cv2.inRange(frameHSV, TARGET_COLOR_MIN, TARGET_COLOR_MAX)
         
-        TARGET_COLOR_MIN = np.array([180--14.3828125, 4.4217581216490842, 128.4186480862943],np.uint8) #part center
+        TARGET_COLOR_MIN = np.array([180-14.3828125, 4.4217581216490842, 128.4186480862943],np.uint8) #part center
         TARGET_COLOR_MAX = np.array([180, 82.876236233722324, 207.21003743583384],np.uint8)
         frameThreshold2 = cv2.inRange(frameHSV, TARGET_COLOR_MIN, TARGET_COLOR_MAX)
         
@@ -61,19 +64,33 @@ if __name__ == '__main__':
             
         cv2.drawContours( frame, component_contours, contourIdx=-1, color=(128,255,255),thickness=-3)
         
+        min_distance_center_point = None
+        min_center_point_value = float("Infinity")
+        
         for cnt in component_contours:
             center_point = np.mean(cnt, axis = 0)
             center_point= center_point[0]
             x=int(center_point[0])
             y=int(center_point[1])
-            cv2.circle(frame,(x,y),radius=3,color=(0,0,255),thickness=-1)
+            center =(x,y)
+            #dist = np.linalg.norm(center-camera_center)
+            #if dist<min_center_point_value:
+            #    min_center_point_value=dist
+            #    min_distance_center_point=center
+            cv2.circle(frame,center,radius=3,color=(0,0,255),thickness=-1)
+        
+        
+        
+        
+            
+        
         #for contour in contrs:
         #    print np.mean(contour,axis=0)
           
         #cv2.drawContours(frame, contours,contourIdx=-1,color=(255,0,0))
         
         #cv.ShowImage("threashold", frameThreshold)
-        cv.ShowImage("camera", img)
+        cv2.imshow("camera", frame)
         if cv.WaitKey(10) == 27:
             #print contrs
             #print len(contours)
