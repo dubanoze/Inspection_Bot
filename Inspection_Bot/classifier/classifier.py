@@ -48,7 +48,7 @@ if __name__ == '__main__':
         
         
     start_time = time.time()
-    sample_size = 10000
+    sample_size = 1000
     negative_pixels=random.sample(negative_pixels, sample_size)
     positive_pixels=random.sample(positive_pixels, sample_size)
     
@@ -60,8 +60,8 @@ if __name__ == '__main__':
     X = negative_pixels+positive_pixels
     y = false_lables +true_lables
     print len(y)
-    clf = svm.SVC(kernel ='rbf' ,cache_size=1000)
-    #clf = svm.SVC(cache_size=1000)
+    #clf = svm.SVC(kernel ='rbf' ,cache_size=1000)
+    clf = svm.SVC(cache_size=1000)
     print 'start'
     clf.fit(X, y)
     print 'finish'
@@ -84,43 +84,43 @@ if __name__ == '__main__':
     
     #cv.mSet(mat, row, col, value)
     
-    start_time = time.time()
+    #start_time = time.time()
     height, width, depth = img.shape
-    
-    print(type(img))
-    #frameMat=cv.GetMat(img)
-    #size = height, width, 1
-    #matrix = np.ones(size, dtype=np.uint8)
-    prediction_time = 0
-    pixel_value = img[ 0, 0]
-    b = pixel_value[0]
-    print (type(b))
-    for i in range(0, height):
-        for j in range(0, width):
-            pixel_value = img[ i, j]
-            # Since OpenCV loads color images in BGR, not RGB
-            b = pixel_value[0]
-            g = pixel_value[1]
-            r = pixel_value[2]
-            prediction_start_time = time.time()
-            predicted_pixel = clf.predict([b,g,r])
-            prediction_time=prediction_time+time.time()-prediction_start_time
-            if predicted_pixel==0:
-                pixel_value[0]=0
-                pixel_value[1]=0
-                pixel_value[2]=0
-    elapsed_time = time.time() - start_time
-    
-    print 'predicted start time ' + str(prediction_time)
-    
+    mask = np.zeros((height+2, width+2), np.uint8)
+    seed_pt = None
+    fixed_range = True
+    connectivity = 4    
+    flags = connectivity
+    if fixed_range:
+        flags |= cv2.FLOODFILL_FIXED_RANGE
+    cv2.imshow('floodfill', img)
+    flooded = img.copy()
+    hi = 20
+    lo = 20 
+    start = time.time()
+    for i in range(0,1000):
+        j=random.randrange(117, 390)
+        i=random.randrange(261, 427)
+        seed_pt = i, j
+        pixel_value = flooded[seed_pt]
+        # Since OpenCV loads color images in BGR, not RGB
+        b = pixel_value[0]
+        g = pixel_value[1]
+        r = pixel_value[2]
+        predicted_pixel = clf.predict([b,g,r])
+        if predicted_pixel==0:
+            cv2.floodFill(flooded, mask, seed_pt, (0, 0, 0), (lo,)*3, (hi,)*3, flags)
+        elif predicted_pixel==1:
+            cv2.floodFill(flooded, mask, seed_pt, (255, 255, 255), (lo,)*3, (hi,)*3, flags)
+        cv2.circle(flooded, seed_pt, 2, (0, 0, 255), -1)
+    cv2.imshow('floodfill', flooded)
+    elapsed_time = time.time()-start
     print elapsed_time
-                #img[ i, j]=(0,0,0)
-           #pixels.append((b,g,r))
            
            
     
     while True:
-        cv2.imshow('image',img)
+        #cv2.imshow('image',img)
         if cv.WaitKey(10) == 27:
             break
     cv.DestroyAllWindows()
