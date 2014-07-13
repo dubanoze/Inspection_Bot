@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 import cv2.cv as cv
-
+import math
 
 #
 #Citation:http://www.blogdugas.net/?p=120 
@@ -64,7 +64,7 @@ if __name__ == '__main__':
             
         cv2.drawContours( frame, component_contours, contourIdx=-1, color=(128,255,255),thickness=-3)
         
-        min_distance_center_point = None
+        min_distance_comp = None
         min_center_point_value = float("Infinity")
         
         for cnt in component_contours:
@@ -73,12 +73,24 @@ if __name__ == '__main__':
             x=int(center_point[0])
             y=int(center_point[1])
             center =(x,y)
+            
+            dist = math.hypot(center[0]-camera_center[0],center[1]-camera_center[1])
             #dist = np.linalg.norm(center-camera_center)
-            #if dist<min_center_point_value:
-            #    min_center_point_value=dist
-            #    min_distance_center_point=center
-            cv2.circle(frame,center,radius=3,color=(0,0,255),thickness=-1)
-        
+            if dist<min_center_point_value:
+                min_center_point_value=dist
+                min_distance_comp=cnt
+            
+        if min_distance_comp is not None:
+            rec_points = cv2.boundingRect(min_distance_comp)
+            cv2.rectangle(frame, (rec_points[0],rec_points[1]),(rec_points[0]+rec_points[2],rec_points[1]+rec_points[3]), color=(0,0,255),thickness=2)
+            cv2.rectangle(frame, (rec_points[0],rec_points[1]-rec_points[3]/3),(rec_points[0]+rec_points[2],rec_points[1]+rec_points[3]+rec_points[3]/3), color=(255,0,0),thickness=2)
+            cv2.circle(frame,(rec_points[0]+rec_points[2]/2,rec_points[1]+rec_points[3]/2),radius=3,color=(0,0,255),thickness=-1)
+            #cv2.rectangle(frame, (rec_points[0],rec_points[1]-rec_points[3]),(rec_points[0]+rec_points[2],rec_points[1]+rec_points[3]+rec_points[3]), color=(0,255,0),thickness=2)
+        #print ret
+        #if min_distance_comp is not None:
+        #    point_1 = min_distance_comp[0]-30,min_distance_comp[1]-30
+         #   point_2 = min_distance_comp[0]+30,min_distance_comp[1]+30
+        #    cv2.rectangle(frame, point_1, point_2, color=(0,0,255),thickness=1)
         
         
         

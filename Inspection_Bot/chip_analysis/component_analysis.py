@@ -45,7 +45,7 @@ def get_hue_std(pixels):
     
 
 if __name__ == '__main__':
-    directory_path = './similar_cropped_parts/'
+    directory_path = './part_contacts/'
     part_file_names = os.listdir(directory_path)
     pixels=[]
     for part in part_file_names:
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     hue_mean =  get_hue_mean(pixels)
     hue_std=  get_hue_std(pixels)
     #hue_min = 
-    factor = 3
+    factor = 4
     pixel_min = [get_hue_mean(pixels) - factor*get_hue_std(pixels),pixel_mean[1]-factor*pixel_standard_deviation[1],pixel_mean[2]-factor*pixel_standard_deviation[2]]
     print pixel_min
     pixel_max = pixel_min = [get_hue_mean(pixels) + factor*get_hue_std(pixels),pixel_mean[1]+factor*pixel_standard_deviation[1],pixel_mean[2]+factor*pixel_standard_deviation[2]]
