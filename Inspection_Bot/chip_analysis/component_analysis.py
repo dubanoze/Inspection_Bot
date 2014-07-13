@@ -62,9 +62,11 @@ if __name__ == '__main__':
     #print pixel_max
     hue_mean =  get_hue_mean(pixels)
     hue_std=  get_hue_std(pixels)
-    pixel_min = [get_hue_mean(pixels) - 2*get_hue_std(pixels),pixel_mean[1]-2*pixel_standard_deviation[1],pixel_mean[2]-2*pixel_standard_deviation[2]]
+    #hue_min = 
+    factor = 3
+    pixel_min = [get_hue_mean(pixels) - factor*get_hue_std(pixels),pixel_mean[1]-factor*pixel_standard_deviation[1],pixel_mean[2]-factor*pixel_standard_deviation[2]]
     print pixel_min
-    pixel_max = pixel_min = [get_hue_mean(pixels) + 2*get_hue_std(pixels),pixel_mean[1]+2*pixel_standard_deviation[1],pixel_mean[2]+2*pixel_standard_deviation[2]]
+    pixel_max = pixel_min = [get_hue_mean(pixels) + factor*get_hue_std(pixels),pixel_mean[1]+factor*pixel_standard_deviation[1],pixel_mean[2]+factor*pixel_standard_deviation[2]]
     print pixel_max
     #print "pixel max = ({0:f},{1:f},{2:f})".format(float(pixel_max[0],pixel_max[1],pixel_max[2]))
     #while True:
