@@ -45,7 +45,7 @@ def get_hue_std(pixels):
     
 
 if __name__ == '__main__':
-    directory_path = './part_contacts/'
+    directory_path = './similar_cropped_parts/'
     part_file_names = os.listdir(directory_path)
     pixels=[]
     for part in part_file_names:
