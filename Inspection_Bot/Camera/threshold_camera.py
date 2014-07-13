@@ -42,7 +42,7 @@ if __name__ == '__main__':
         frameThreshold = cv2.erode(frameThreshold,element, iterations=2)
         frameThreshold = cv2.dilate(frameThreshold,element, iterations=2)
         frameThreshold = cv2.erode(frameThreshold,element)
-        
+        #http://docs.opencv.org/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#contourarea 
         
         contours, hierarchy =cv2.findContours(frameThreshold.copy(),cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
         frameThreshold=cv.fromarray(frameThreshold)
@@ -52,8 +52,21 @@ if __name__ == '__main__':
         #h, w = img.shape[:2]
         #vis = np.zeros((h, w, 3), np.uint8)
         #contours = [cv2.approxPolyDP(cnt, 3, True) for cnt in contours0]  
-        cv2.drawContours( frame, contours, -1, (128,255,255))
+        component_contours=[]
+        for cnt in contours:
+            if cv2.contourArea(cnt)>3000:
+                component_contours.append(cnt)
         
+
+            
+        cv2.drawContours( frame, component_contours, contourIdx=-1, color=(128,255,255),thickness=-3)
+        
+        for cnt in component_contours:
+            center_point = np.mean(cnt, axis = 0)
+            center_point= center_point[0]
+            x=int(center_point[0])
+            y=int(center_point[1])
+            cv2.circle(frame,(x,y),radius=3,color=(0,0,255),thickness=-1)
         #for contour in contrs:
         #    print np.mean(contour,axis=0)
           
@@ -62,8 +75,12 @@ if __name__ == '__main__':
         #cv.ShowImage("threashold", frameThreshold)
         cv.ShowImage("camera", img)
         if cv.WaitKey(10) == 27:
-            print contrs
-            print len(contrs)
+            #print contrs
+            #print len(contours)
+            for cnt in contours:
+                #print cv2.contourArea(cnt)
+                print np.mean(cnt, axis = 0)
+            #print component_contours
             break
     cv.DestroyAllWindows()
 
