@@ -10,6 +10,12 @@ from printrun.pronsole import *
 from multiprocessing import Queue
 import re
 
+# a main program to test whether pinter_control.py can connect to the printer.
+# Since the main program is not linked to the Inspection_Bot.py program no 
+# commands will be sent to the printer. 
+if __name__ == '__main__':
+    run_printer()
+
 #Notice that the x and y offset of the chip relative to the printer bead is added here
 
 def load_component_coordinates():
@@ -85,8 +91,3 @@ def run_printer(command_input=None,console_output=None):
     #exit the pronsole control program
     interp.onecmd("exit")
 
-# a main program to test whether pinter_control.py can connect to the printer.
-# Since the main program is not linked to the Inspection_Bot.py program no 
-# commands will be sent to the printer. 
-if __name__ == '__main__':
-    run_printer()
