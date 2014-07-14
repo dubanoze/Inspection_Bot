@@ -85,7 +85,7 @@ if __name__ == '__main__':
             cv2.rectangle(frame, (rec_points[0],rec_points[1]),(rec_points[0]+rec_points[2],rec_points[1]+rec_points[3]), color=(0,0,255),thickness=2)
             cv2.rectangle(frame, (rec_points[0],rec_points[1]-rec_points[3]/3),(rec_points[0]+rec_points[2],rec_points[1]+rec_points[3]+rec_points[3]/3), color=(255,0,0),thickness=2)
             cv2.circle(frame,(rec_points[0]+rec_points[2]/2,rec_points[1]+rec_points[3]/2),radius=3,color=(0,0,255),thickness=-1)
-            #cv2.rectangle(frame, (rec_points[0],rec_points[1]-rec_points[3]),(rec_points[0]+rec_points[2],rec_points[1]+rec_points[3]+rec_points[3]), color=(0,255,0),thickness=2)
+            cv2.rectangle(frame, (rec_points[0]-rec_points[2]/4,rec_points[1]-rec_points[3]),(rec_points[0]+rec_points[2]+rec_points[2]/4,rec_points[1]+rec_points[3]+rec_points[3]), color=(0,255,0),thickness=2)
         #print ret
         #if min_distance_comp is not None:
         #    point_1 = min_distance_comp[0]-30,min_distance_comp[1]-30
