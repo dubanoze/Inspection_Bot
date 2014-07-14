@@ -16,7 +16,7 @@ import re
 if __name__ == '__main__':
     run_printer()
 
-#Notice that the x and y offset of the chip relative to the printer bead is added here
+#Notice that the x and y offset of the chip relative to the printer bed is added here
 
 def load_component_coordinates():
     gcodes=['G28 X F2000','G28 Y F2000','G28 Z',"G1 Z10.00 F2000"]

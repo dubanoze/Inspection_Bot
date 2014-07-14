@@ -39,7 +39,7 @@ def Run_Camera_Test(command_input=None,command_output=None):
                 #save the current image
                 
                 date_and_timestamp = datetime.datetime.now().strftime('on %Y-%m-%d @ %H:%M:%S.%f %p')
-                # note the the saved image file path with be relative to the Inspection_Bot.py program
+                # note: the the saved image file path with be relative to the Inspection_Bot.py program
                 #because it is the control program meaning all paths will be relative to it. 
                 save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
                 if not os.path.exists(os.path.dirname(save_file_name)):
