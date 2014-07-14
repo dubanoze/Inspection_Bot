@@ -40,7 +40,7 @@ def Run_Camera_Test(command_input=None,command_output=None):
                 save_file_name = "../saved_images/image_{0}.png".format(str("{0:0>3}".format(number_of_saved_images)))
                 if not os.path.exists(os.path.dirname(save_file_name)):
                     os.makedirs(os.path.dirname(save_file_name))
-                #cv.CloneImage(img)
+
                 cv.SaveImage(save_file_name,img)
                 print "saved file " + str(number_of_saved_images) + " " +  date_and_timestamp
                 number_of_saved_images =number_of_saved_images + 1
