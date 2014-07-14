@@ -49,45 +49,57 @@ class program_controlled_pronsole(pronsole):
         pronsole.__init__(self)
         pronsole.use_rawinput=False
 
-
+# Allows Inspection_Bot.py to control the printer
 def run_printer(command_input=None,console_output=None):
-
+    
+    #create the variable that will send command to the printer
     interp = program_controlled_pronsole()
     
-    
+    # a counter to keep track of how many command have been sent
     command_line = 0
     
-    gcodes=[]
+    #load gcode commands into a list    
     gcodes=load_component_coordinates()
-    
+    #connect to the printer
     interp.onecmd("connect")
-    interp.onecmd("G28")
+
     while True:
         #command = command_input.recv()
         
         
-
-
+        
+        #get commands send by Inspection_Bot.py from the command Queue.
+        #Important Note!:  This is a multiprocessing queue meaning that
+        #attempting to read from and empty queue will cause the process to 
+        # stop until there is something in the queue to read. See
+        #https://docs.python.org/2/library/multiprocessing.html
+        #for more details
         command = command_input.get()
         
-        #command=command[0]
-        # these commands should be moved to program_controlled_pronsole for later
-
+        
+        # send the nect command to the printer
         if command=='next':
             print "sending vector to printer"
             if command_line<len(gcodes):
                 printer_command = gcodes[command_line]
                 interp.onecmd(printer_command)
                 command_line=command_line+1
+            # if there are no other command to send then exit the program
             else:
                 print "no more commands"
                 break;
+        # exit the program 
         if command=='exit':
             break;
-            
+    #stop the motors
     interp.onecmd("M84")
+    #disconnect from the printer
     interp.onecmd("disconnect")
+    #exit the pronsole control program
     interp.onecmd("exit")
 
+# a main program to test whether pinter_control.py can connect to the printer.
+# Since the main program is not linked to the Inspection_Bot.py program no 
+# commands will be sent to the printer. 
 if __name__ == '__main__':
     run_printer()
