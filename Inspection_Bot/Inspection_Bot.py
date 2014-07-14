@@ -67,6 +67,22 @@ if __name__ == '__main__':
     #tell the camera to stop and exit
     camera_command_queue.put('exit')
     
+    
+    #moving chip images from the a temperary 'saved_image_folder' to a more perimenant directory
+    
+    directory_names = os.listdir('../Chip_Files')
+    
+    saved_chip_count = 0
+    
+    
+    
+    for files_names in directory_names:
+         if 'chip' in files_names:
+             saved_chip_count=saved_chip_count+1
+    
+
+    
+    os.rename("../saved_images","../Chip_Files/chip_{:d}".format(saved_chip_count))
     #End of program
     
     
