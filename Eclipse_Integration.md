@@ -68,7 +68,17 @@ If USB microscope is connected to the computer, the program should start running
 
 ![Alt text][run_camera]
 
+Integration with Pronterface
+---
 
+Clone the [Pronterface repository](https://github.com/kliment/Printrun) to your file system (follow 'Import Git Repo' directions)
+
+Right click on Inspection_Bot in eclipse and select 'Properties'. Then select the 'pydev-PYTHONPATH' bar followed by the 'External Libraries' tab
+
+Select 'Add Source Folder' then enter the path where pronterface was downloaded.
+
+![Alt text][pronterface_setup]
+ 
 
 [Open_Marketplace]: /Eclipse_Integration_Screen_Captures/Eclipse_Marketplace.png
 
@@ -93,3 +103,5 @@ If USB microscope is connected to the computer, the program should start running
 [run_project]: /Eclipse_Integration_Screen_Captures/running_project.png
 
 [run_camera]: /Eclipse_Integration_Screen_Captures/running_program.png
+
+[pronterface_setup]: /Eclipse_Integration_Screen_Captures/Pronterface_Integration.png
