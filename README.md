@@ -5,6 +5,8 @@ Still in development...
 A collection of Python modules that help collect and analyze image data for the optical inspection of PCB boards. This software is particularly useful for RepRap 3D printing hardware. 
 
 Modules Include:
+- Inspection Bot:  The main program that allows for control of both the usb microscope and RepRap printer.  It is currently set up to send coordinated commands to both the printer and camera.  Use this program to gather initial chip image data for future analysis. 
+- Printer Communication: a module that alows for control of the RepRap printer through the Kiliment Printrun interface. 
 - Camera:  Interfaces with a USB microscope that has replaced the plastic extruder of a 3D Printer.  The program detects whether the USB camera has moved to a new location and stopped moving long enough to obtain a clear photo.  Images are put in the “saved_images” directory. Note: The module acts independently of the software controlling the 3D printer.
 - PCB_Information:  An XML parser that reads Eagle PCB board files and writes the electronic component locations to the ‘vectors.txt’ file.  To select the vectors to write to a file open Eagle and select only the component layers that are of interest, then save the PCB information to a new .brd file. 
 - shortest_path: reads a list of (x,y) vectors and tries to find the shortest path / tour that visits all the vectors.  The tour is written to  ‘best found tour.txt’  file.  Important!  Program will show 3 plots to the user.  Close each one to finish the program .  
