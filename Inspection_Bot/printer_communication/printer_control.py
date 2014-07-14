@@ -22,9 +22,13 @@ import time
 from printrun.pronsole import *
 from multiprocessing import Queue
 import re
-def points():
-    gcodes=['G28 X F2000','G4 P1000','G28 Y F2000','G4 P1000']
-    
+
+#Notice that the x and y offset of the chip relative to the printer bead is added here
+
+def load_component_coordinates():
+    gcodes=['G28 X F2000','G28 Y F2000','G28 Z',"G1 Z10.00 F2000"]
+    x_offset = 27.10
+    y_offset = 11.11
 
     try:
         f = open("../shortest_path/best_found_tour.txt")
@@ -32,19 +36,21 @@ def points():
         f = open("./shortest_path/best_found_tour.txt")
     for line in f:
         vec=re.findall(r'\d+.\d+', line)
-        command = "G1 X{0:.2f} Y{1:.2f} F1000".format(float(vec[0]),float(vec[1]))
+        command = "G1 X{0:.2f} Y{1:.2f} F2000".format(float(vec[0])+x_offset,float(vec[1])+y_offset)
         gcodes.append(command)
     f.close()
     return gcodes
 
 
-
+# a modified version of kliments pronsole program.  Used to control the printer
+#from another program rather than by human input.
 class program_controlled_pronsole(pronsole):
     def __init__(self):
         pronsole.__init__(self)
         pronsole.use_rawinput=False
 
-def run_console(command_input=None,console_output=None):
+
+def run_printer(command_input=None,console_output=None):
 
     interp = program_controlled_pronsole()
     
@@ -52,7 +58,7 @@ def run_console(command_input=None,console_output=None):
     command_line = 0
     
     gcodes=[]
-    gcodes=points()
+    gcodes=load_component_coordinates()
     
     interp.onecmd("connect")
     interp.onecmd("G28")
@@ -84,4 +90,4 @@ def run_console(command_input=None,console_output=None):
     interp.onecmd("exit")
 
 if __name__ == '__main__':
-    run_console()
+    run_printer()
