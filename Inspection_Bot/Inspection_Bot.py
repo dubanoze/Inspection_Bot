@@ -16,8 +16,8 @@ import cv2
 
 
 # Inspection_Bot.py
-#  A program that allows for simultaneous control of both the printer and usb camera
-#  every time a command is sent to the printer to go to the next coordinate, it is followed
+#  A program that allows for simultaneous control of both the printer and usb camera.
+#  Every time a command is sent to the printer to go to the next coordinate, it is followed
 # by a command to the camera to take a picture.
 # 
 # Because both the camera and printer must run simultaneous and independently from each other

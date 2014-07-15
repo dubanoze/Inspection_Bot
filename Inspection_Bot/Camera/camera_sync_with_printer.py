@@ -8,8 +8,9 @@ import os
 import numpy as np
 from multiprocessing import Queue
 
-# a main function to tell whether the camera is working
-# since there is no command queue sent to the run_camera function 
+# a main function to tell whether the camera is working.
+# Note that if this program is run from here and not 
+# Inspection_Bot.py no images will be taken by the camera
 if __name__ == '__main__':
     Run_Camera_Test()
 
@@ -33,6 +34,7 @@ def Run_Camera_Test(command_input=None,command_output=None):
         cv.ShowImage("camera", img)
         #if the camera has recieved a command from the command queue
         if command_input is not None and not command_input.empty():
+            #get the command from the command queue
             command = command_input.get()
             # if the command is snap
             if command == 'snap':
