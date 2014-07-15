@@ -45,7 +45,7 @@ class program_controlled_pronsole(pronsole):
 # Allows Inspection_Bot.py to control the printer
 def run_printer(command_input=None,console_output=None):
     
-    #create the variable that will send command to the printer
+    #create the variable that will send commands to the printer
     interp = program_controlled_pronsole()
     
     # a counter to keep track of how many command have been sent
@@ -70,7 +70,7 @@ def run_printer(command_input=None,console_output=None):
         command = command_input.get()
         
         
-        # send the nect command to the printer
+        # send the next command to the printer
         if command=='next':
             print "sending vector to printer"
             if command_line<len(gcodes):

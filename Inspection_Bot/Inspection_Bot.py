@@ -51,7 +51,7 @@ if __name__ == '__main__':
     #time.sleep(20)
     
     #Send 50 commands to the printer and camera
-    for i in range(0,50):
+    for i in range(0,200):
         
         time.sleep(command_delay)
         #tell the printer to go to it's next command
