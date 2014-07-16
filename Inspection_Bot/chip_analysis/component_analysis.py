@@ -75,9 +75,9 @@ if __name__ == '__main__':
     #hue_min = 
     factor = 3
     pixel_min = [get_hue_mean(pixels) - factor*get_hue_std(pixels),pixel_mean[1]-factor*pixel_standard_deviation[1],pixel_mean[2]-factor*pixel_standard_deviation[2]]
-    print "Estimated pixel minimum "+str(pixel_min)
+    print "Estimated HSV pixel minimum "+str(pixel_min)
     pixel_max = pixel_min = [get_hue_mean(pixels) + factor*get_hue_std(pixels),pixel_mean[1]+factor*pixel_standard_deviation[1],pixel_mean[2]+factor*pixel_standard_deviation[2]]
-    print "Estimated pixel maximum "+str(pixel_max)
+    print "Estimated HSV pixel maximum "+str(pixel_max)
     
 
 
