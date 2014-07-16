@@ -8,11 +8,7 @@ import os
 import numpy as np
 from multiprocessing import Queue
 
-# a main function to tell whether the camera is working.
-# Note that if this program is run from here and not 
-# Inspection_Bot.py no images will be taken by the camera
-if __name__ == '__main__':
-    Run_Camera_Test()
+
 
 
 #allows for Inspection_Bot.py to control the usb microscope camera.
@@ -61,3 +57,8 @@ def Run_Camera_Test(command_input=None,command_output=None):
     #Close all windows before exiting. 
     cv.DestroyAllWindows()
 
+# a main function to tell whether the camera is working.
+# Note that if this program is run from here and not 
+# Inspection_Bot.py no images will be taken by the camera
+if __name__ == '__main__':
+    Run_Camera_Test()
