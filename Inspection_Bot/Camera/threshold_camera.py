@@ -18,15 +18,16 @@ if __name__ == '__main__':
     camera_center = (width/2,height)
     while True:
         ret, frame = capture.read()
+        
+        #results returned by component_analysis were 
+        #Estimated pixel minimum [-14.3828125, 4.4217581216490842, 128.4186480862943]
+        # and
+        #Estimated pixel maximum [31.6015625, 82.876236233722324, 207.21003743583384]
+        # Because these values are outside of the range of the HSV spectrum, the color
+        # threshold ranges have been calculated in pieces to obtain the disired pixels. 
         TARGET_COLOR_MIN = np.array([00, 4.4217581216490842, 128.4186480862943],np.uint8) #part center
         TARGET_COLOR_MAX = np.array([31.6015625, 82.876236233722324, 207.21003743583384],np.uint8)
-#        TARGET_COLOR_MIN = np.array([40, 0,0],np.uint8) #background Definitely use
-#        TARGET_COLOR_MAX = np.array([139,255,240],np.uint8)
 
-#        TARGET_COLOR_MIN = np.array([0, 0,0],np.uint8) #metal contacts
-#        TARGET_COLOR_MAX = np.array([255,20,255],np.uint8)
- 
-        #frame = np.asarray(img[:,:])
         
         frameHSV = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         frameThreshold = cv2.inRange(frameHSV, TARGET_COLOR_MIN, TARGET_COLOR_MAX)
