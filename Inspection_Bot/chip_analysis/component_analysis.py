@@ -52,11 +52,10 @@ def get_hue_std(pixels):
 # These values are used by the Camera->threshold_camera.py script to 
 # differenciate different components from one another. 
 if __name__ == '__main__':
-    # directory holding the collection of images to be analysed.  Right now
-    # the similar_cropped_parts directory holds images of the center of 
-    # capasitors held on the rambo board. 
-    directory_path = './similar_cropped_parts/'
-    
+    # directory holding the collection of images to be analysed.  
+    directory_path = './capacitor_centers/'
+   # directory_path = './resistor_centers/' # because these components have 2 color centers
+                                            # more complex analysis is needed for accurate results. 
     
     part_file_names = os.listdir(directory_path)
     pixels=[]
