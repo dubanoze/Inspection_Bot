@@ -2,8 +2,7 @@ from sklearn import svm
 import cv2
 
 #a simple svm classifier using 4 images to train and one to test
-# uses the grayscale histogram of the entire image, which is actually not a good feature to use for clasification,
-# but better feature selection to be added later. 
+# uses the grayscale histogram of the entire image but better feature selection to be added later. 
 if __name__ == '__main__':
     good_image_1 =  cv2.imread("./samples/good-1.jpg")
     good_image_2 = cv2.imread("./samples/good-2.jpg")
