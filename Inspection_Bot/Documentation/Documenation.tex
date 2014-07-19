@@ -10,57 +10,111 @@
 \maketitle
 
 \section{Computational Hardware}
-\includegraphics[scale=0.1,angle=270]{images/Computation_Resources/IMG_0619.JPG}
-\includegraphics[scale=0.1]{images/Computation_Resources/IMG_0620.JPG}
-\includegraphics[scale=0.1]{images/Computation_Resources/IMG_0621.JPG}
-\includegraphics[scale=0.1]{images/Computation_Resources/IMG_0622.JPG}
-\section{Printer Path}
-\includegraphics{images/Path/original_path.png}
-\includegraphics{images/Path/best_found_path.png}
 
+Ideally an inspection robot would be place in-between every step of the PCB manufacturing process. Since this would require potentially dozens of robots, creating a system that is cheap and scalable, would be ideal.  Because of this, all the software being developed in this project is being designed to work on the raspberry pi hardware.  This means that once one bot is fully developed and working on the raspberry pi, setting up another robot is as simple as copying an SD memory card. This allows for many bots to work in parallel while taking advantage of the economics of mass production. 
+
+\newpage
+\includegraphics[scale=0.1]{images/Computation_Resources/IMG_0620.JPG}
+
+Inspection bot software running on a raspberry pi.  It has just enough cpu power to control both the printer and perform PCB image analysis.  
+\newpage
+\includegraphics[scale=0.1,angle=270]{images/Computation_Resources/IMG_0619.JPG}
+
+Uses a very cheap USB microscope.  Although a higher end one would be necessary for detailed volume analysis of board components. 
+
+\newpage
+\includegraphics[scale=0.1]{images/Computation_Resources/IMG_0621.JPG}
+
+The usb microscope and printer are run off of the raspberry pi using a powered usb hub.  This is not an ideal way to capture image data since running a camera over the raspberry pi usb port is very slow.  Ideally the system would use the raspberry pi camera to take images since the raspberry pi camera connect directly to the raspberry pi bus.  But this would require adding a lens to the raspberry pi camera in order to change it into a microscope.   
+
+\newpage
+\includegraphics[scale=0.1]{images/Computation_Resources/IMG_0622.JPG}
+
+An image of the inspection bot software running on the raspberry pi. 
+\section{Printer Path}
+\includegraphics[scale=0.8]{images/Path/original_path.png}
+
+original path from PCB component list. 
+\newpage
+\includegraphics[scale=0.8]{images/Path/best_found_path.png}
+
+By finding a more efficient path, as seen above, the time required to scan all the components on a chip goes from a half an hour to less than 3 mins. 
 
 \section{Chip Analysis Setup}
-\includegraphics{images/Segmentation/raw_image.png}
-\includegraphics{images/Segmentation/binary.png}
-\includegraphics{images/Segmentation/part_analysis.png}
+\includegraphics[scale=0.8]{images/Segmentation/raw_image.png}
+
+Most components on a PCB board have a unique color signature.  By detecting this signature it is possible to detect and track components as the bot moves. 
+
+\newpage
+\includegraphics[scale=0.8]{images/Segmentation/binary.png}
+\newpage
+\includegraphics[scale=0.8]{images/Segmentation/part_analysis.png}
 
 
 \section{Volume Analysis Setup}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0604.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0605.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0606.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0607.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0608.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0609.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0610.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0611.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0612.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0613.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0614.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0616.JPG}
-\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0617.JPG}
 \includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0618.JPG}
-\includegraphics[scale=0.1]{images/volume_analysis_setup/IMG_0606.JPG}
-\includegraphics{images/volume_analysis_setup/laser-8}
+\newpage
+\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0616.JPG}
+\newpage
+\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0617.JPG}
+\newpage
+\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0613.JPG}
+\newpage
+\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0611.JPG}
+\newpage
+%\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0612.JPG}
+%\newpage
+\includegraphics[scale=0.1]{images/volume_analysis_setup/IMG_0614.JPG}
+\newpage
 
+\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0604.JPG}
+\newpage
+\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0605.JPG}
+\newpage
+
+%\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0607.JPG}
+%\newpage
+%\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0608.JPG}
+%\newpage
+%\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0609.JPG}
+%\newpage
+%\includegraphics[scale=0.1,angle=270]{images/volume_analysis_setup/IMG_0610.JPG}
+%\newpage
+
+
+
+
+
+
+\includegraphics[scale=0.1]{images/volume_analysis_setup/IMG_0606.JPG}
+\newpage
+\includegraphics{images/volume_analysis_setup/laser-8}
+\newpage
 
 \section{Volume Image Processing}
-\includegraphics{images/volume_image_processing/led_image.png}
-\includegraphics{images/volume_image_processing/laser_image.png}
-\includegraphics{images/volume_image_processing/binary_led_image.png}
-\includegraphics{images/volume_image_processing/binary_laser_image.png}
-\includegraphics{images/volume_image_processing/union_laser_led_binaries.png}
-
+\includegraphics[scale=0.8]{images/volume_image_processing/led_image.png}
+\newpage
+\includegraphics[scale=0.8]{images/volume_image_processing/binary_led_image.png}
+\newpage
+\includegraphics[scale=0.8]{images/volume_image_processing/laser_image.png}
+\newpage
+\includegraphics[scale=0.8]{images/volume_image_processing/binary_laser_image.png}
+\newpage
+\includegraphics[scale=0.8]{images/volume_image_processing/union_laser_led_binaries.png}
+\newpage
 
 \section{Volume Results}
-\includegraphics{images/volume_results/solder_led_hole.png}
-\includegraphics{images/volume_results/solder_laser_hole.png}
-\includegraphics{images/volume_results/binary_image_hole.png}
+\includegraphics[scale=0.8]{images/volume_results/solder_led_hole.png}
+\newpage
+\includegraphics[scale=0.8]{images/volume_results/solder_laser_hole.png}
+\newpage
+\includegraphics[scale=0.8]{images/volume_results/binary_image_hole.png}
 Notice how the top of the white blob is thinner than the middle.  That is because the volume of solder at the top is less than the volume of solder at the middle. Also notice the black hole, this corresponds to a hole in the solder paste.
-
+\newpage
 \section{Classification}
-\includegraphics{images/Classification/data.png}
-\includegraphics{images/Classification/analized_data.png}
+\includegraphics[scale=0.8]{images/Classification/data.png}
+\newpage
+\includegraphics[scale=0.8]{images/Classification/analized_data.png}
 
 %\begin{abstract}
 
