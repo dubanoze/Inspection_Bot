@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.18)  18 JUL 2014 23:16
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.18)  19 JUL 2014 00:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -140,127 +140,90 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 LaTeX Warning: No \author given.
 
-<images/volume_analysis_setup/IMG_0604.JPG, id=1, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0604.JPG Graphic file (type jpg)
+<images/Path/original_path.png, id=1, 586.8324pt x 442.2924pt>
+File: images/Path/original_path.png Graphic file (type png)
 
-<use images/volume_analysis_setup/IMG_0604.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0604.JPG used on inpu
-t line 13.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+<use images/Path/original_path.png>
+Package pdftex.def Info: images/Path/original_path.png used on input line 12.
+(pdftex.def)             Requested size: 586.83096pt x 442.29132pt.
 
-<images/volume_analysis_setup/IMG_0605.JPG, id=2, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0605.JPG Graphic file (type jpg)
+<images/Path/best_found_path.png, id=3, 586.8324pt x 442.2924pt>
+File: images/Path/best_found_path.png Graphic file (type png)
 
-<use images/volume_analysis_setup/IMG_0605.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0605.JPG used on inpu
-t line 14.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+<use images/Path/best_found_path.png>
+Package pdftex.def Info: images/Path/best_found_path.png used on input line 13.
 
-<images/volume_analysis_setup/IMG_0606.JPG, id=3, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0606.JPG Graphic file (type jpg)
+(pdftex.def)             Requested size: 586.83096pt x 442.29132pt.
 
-<use images/volume_analysis_setup/IMG_0606.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0606.JPG used on inpu
-t line 15.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0607.JPG, id=4, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0607.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0607.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0607.JPG used on inpu
-t line 16.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0608.JPG, id=5, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0608.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0608.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0608.JPG used on inpu
-t line 17.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0609.JPG, id=6, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0609.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0609.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0609.JPG used on inpu
-t line 18.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0610.JPG, id=7, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0610.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0610.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0610.JPG used on inpu
-t line 19.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0611.JPG, id=8, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0611.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0611.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0611.JPG used on inpu
-t line 20.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0612.JPG, id=9, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0612.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0612.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0612.JPG used on inpu
-t line 21.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0613.JPG, id=10, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0613.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0613.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0613.JPG used on inpu
-t line 22.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-<images/volume_analysis_setup/IMG_0614.JPG, id=11, 3276.24pt x 2457.18pt>
-File: images/volume_analysis_setup/IMG_0614.JPG Graphic file (type jpg)
-
-<use images/volume_analysis_setup/IMG_0614.JPG>
-Package pdftex.def Info: images/volume_analysis_setup/IMG_0614.JPG used on inpu
-t line 23.
-(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
-
-Overfull \hbox (104.07587pt too wide) in paragraph at lines 13--24
-[] []
+Overfull \hbox (196.83096pt too wide) in paragraph at lines 12--14
+[]
  []
 
 
-Overfull \hbox (104.07587pt too wide) in paragraph at lines 13--24
-[] []
- []
-
-
-Overfull \hbox (104.07587pt too wide) in paragraph at lines 13--24
-[] []
- []
-
-
-Overfull \hbox (104.07587pt too wide) in paragraph at lines 13--24
-[] []
- []
-
-
-Overfull \hbox (104.07587pt too wide) in paragraph at lines 13--24
-[] []
+Overfull \hbox (196.83096pt too wide) in paragraph at lines 12--14
+[] 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/volume_analysis_s
-etup/IMG_0604.JPG> <./images/volume_analysis_setup/IMG_0605.JPG>] [2 <./images/
-volume_analysis_setup/IMG_0606.JPG> <./images/volume_analysis_setup/IMG_0607.JP
-G>] [3 <./images/volume_analysis_setup/IMG_0608.JPG> <./images/volume_analysis_
-setup/IMG_0609.JPG>] [4 <./images/volume_analysis_setup/IMG_0610.JPG> <./images
-/volume_analysis_setup/IMG_0611.JPG>] [5 <./images/volume_analysis_setup/IMG_06
-12.JPG> <./images/volume_analysis_setup/IMG_0613.JPG>]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./images/Path/original
+_path.png>]
+<images/Segmentation/raw_image.png, id=16, 497.34193pt x 365.15369pt>
+File: images/Segmentation/raw_image.png Graphic file (type png)
+
+<use images/Segmentation/raw_image.png>
+Package pdftex.def Info: images/Segmentation/raw_image.png used on input line 1
+7.
+(pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
+
+<images/Segmentation/binary.png, id=17, 497.34193pt x 365.15369pt>
+File: images/Segmentation/binary.png Graphic file (type png)
+
+<use images/Segmentation/binary.png>
+Package pdftex.def Info: images/Segmentation/binary.png used on input line 18.
+(pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
+
+<images/Segmentation/part_analysis.png, id=18, 497.34193pt x 365.15369pt>
+File: images/Segmentation/part_analysis.png Graphic file (type png)
+
+<use images/Segmentation/part_analysis.png>
+Package pdftex.def Info: images/Segmentation/part_analysis.png used on input li
+ne 19.
+(pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
+
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 17--20
+[]
+ []
+
+
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 17--20
+[]
+ []
+
+
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 17--20
+[] 
+ []
+
+[3 <./images/Path/best_found_path.png>] [4 <./images/Segmentation/raw_image.png
+>] [5 <./images/Segmentation/binary.png>]
+<images/volume_analysis_setup/IMG_0604.JPG, id=29, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0604.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0604.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0604.JPG used on inpu
+t line 23.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0605.JPG, id=30, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0605.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0605.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0605.JPG used on inpu
+t line 24.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0606.JPG, id=31, 3276.24pt x 2457.18pt>
 File: images/volume_analysis_setup/IMG_0606.JPG Graphic file (type jpg)
 
 <use images/volume_analysis_setup/IMG_0606.JPG>
@@ -268,136 +231,300 @@ Package pdftex.def Info: images/volume_analysis_setup/IMG_0606.JPG used on inpu
 t line 25.
 (pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
 
-<images/volume_analysis_setup/laser-8.jpg, id=32, 385.44pt x 289.08pt>
+<images/volume_analysis_setup/IMG_0607.JPG, id=32, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0607.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0607.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0607.JPG used on inpu
+t line 26.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0608.JPG, id=33, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0608.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0608.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0608.JPG used on inpu
+t line 27.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0609.JPG, id=34, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0609.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0609.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0609.JPG used on inpu
+t line 28.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0610.JPG, id=35, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0610.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0610.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0610.JPG used on inpu
+t line 29.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0611.JPG, id=36, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0611.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0611.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0611.JPG used on inpu
+t line 30.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0612.JPG, id=37, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0612.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0612.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0612.JPG used on inpu
+t line 31.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0613.JPG, id=38, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0613.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0613.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0613.JPG used on inpu
+t line 32.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0614.JPG, id=39, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0614.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0614.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0614.JPG used on inpu
+t line 33.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0616.JPG, id=40, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0616.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0616.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0616.JPG used on inpu
+t line 34.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0617.JPG, id=41, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0617.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0617.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0617.JPG used on inpu
+t line 35.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/IMG_0618.JPG, id=42, 3276.24pt x 2457.18pt>
+File: images/volume_analysis_setup/IMG_0618.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0618.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0618.JPG used on inpu
+t line 36.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+File: images/volume_analysis_setup/IMG_0606.JPG Graphic file (type jpg)
+
+<use images/volume_analysis_setup/IMG_0606.JPG>
+Package pdftex.def Info: images/volume_analysis_setup/IMG_0606.JPG used on inpu
+t line 37.
+(pdftex.def)             Requested size: 327.64319pt x 245.73239pt.
+
+<images/volume_analysis_setup/laser-8.jpg, id=43, 385.44pt x 289.08pt>
 File: images/volume_analysis_setup/laser-8.jpg Graphic file (type jpg)
 
 <use images/volume_analysis_setup/laser-8.jpg>
 Package pdftex.def Info: images/volume_analysis_setup/laser-8.jpg used on input
- line 26.
-(pdftex.def)             Requested size: 192.71953pt x 144.53964pt.
+ line 38.
+(pdftex.def)             Requested size: 385.43906pt x 289.07928pt.
 
-Overfull \hbox (150.59862pt too wide) in paragraph at lines 25--27
-[][] [] 
+Overfull \hbox (104.07587pt too wide) in paragraph at lines 23--39
+[] []
  []
 
-[6 <./images/volume_analysis_setup/IMG_0614.JPG>]
-<images/volume_image_processing/led_image.png, id=36, 497.34193pt x 365.15369pt
+
+Overfull \hbox (104.07587pt too wide) in paragraph at lines 23--39
+[] []
+ []
+
+
+Overfull \hbox (104.07587pt too wide) in paragraph at lines 23--39
+[] []
+ []
+
+
+Overfull \hbox (104.07587pt too wide) in paragraph at lines 23--39
+[] []
+ []
+
+
+Overfull \hbox (104.07587pt too wide) in paragraph at lines 23--39
+[] []
+ []
+
+
+Overfull \hbox (104.07587pt too wide) in paragraph at lines 23--39
+[] []
+ []
+
+
+Overfull \hbox (104.07587pt too wide) in paragraph at lines 23--39
+[] []
+ []
+
+
+Overfull \hbox (325.69333pt too wide) in paragraph at lines 23--39
+[] [] 
+ []
+
+[6 <./images/Segmentation/part_analysis.png>] [7 <./images/volume_analysis_setu
+p/IMG_0604.JPG> <./images/volume_analysis_setup/IMG_0605.JPG>] [8 <./images/vol
+ume_analysis_setup/IMG_0606.JPG> <./images/volume_analysis_setup/IMG_0607.JPG>]
+[9 <./images/volume_analysis_setup/IMG_0608.JPG> <./images/volume_analysis_setu
+p/IMG_0609.JPG>] [10 <./images/volume_analysis_setup/IMG_0610.JPG> <./images/vo
+lume_analysis_setup/IMG_0611.JPG>] [11 <./images/volume_analysis_setup/IMG_0612
+.JPG> <./images/volume_analysis_setup/IMG_0613.JPG>] [12 <./images/volume_analy
+sis_setup/IMG_0614.JPG> <./images/volume_analysis_setup/IMG_0616.JPG>] [13 <./i
+mages/volume_analysis_setup/IMG_0617.JPG> <./images/volume_analysis_setup/IMG_0
+618.JPG>]
+<images/volume_image_processing/led_image.png, id=70, 497.34193pt x 365.15369pt
 >
 File: images/volume_image_processing/led_image.png Graphic file (type png)
  <use images/volume_image_processing/led_image.png>
 Package pdftex.def Info: images/volume_image_processing/led_image.png used on i
-nput line 28.
+nput line 42.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-<images/volume_image_processing/laser_image.png, id=37, 497.34193pt x 365.15369
+<images/volume_image_processing/laser_image.png, id=71, 497.34193pt x 365.15369
 pt>
 File: images/volume_image_processing/laser_image.png Graphic file (type png)
  <use images/volume_image_processing/laser_image.png>
 Package pdftex.def Info: images/volume_image_processing/laser_image.png used on
- input line 29.
+ input line 43.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-<images/volume_image_processing/binary_led_image.png, id=38, 497.34193pt x 365.
+<images/volume_image_processing/binary_led_image.png, id=72, 497.34193pt x 365.
 15369pt>
 File: images/volume_image_processing/binary_led_image.png Graphic file (type pn
 g)
  <use images/volume_image_processing/binary_led_image.png>
 Package pdftex.def Info: images/volume_image_processing/binary_led_image.png us
-ed on input line 30.
+ed on input line 44.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-<images/volume_image_processing/binary_laser_image.png, id=39, 497.34193pt x 36
+<images/volume_image_processing/binary_laser_image.png, id=73, 497.34193pt x 36
 5.15369pt>
 File: images/volume_image_processing/binary_laser_image.png Graphic file (type 
 png)
  <use images/volume_image_processing/binary_laser_image.png>
 Package pdftex.def Info: images/volume_image_processing/binary_laser_image.png 
-used on input line 31.
+used on input line 45.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-<images/volume_image_processing/union_laser_led_binaries.png, id=40, 497.34193p
+<images/volume_image_processing/union_laser_led_binaries.png, id=74, 497.34193p
 t x 365.15369pt>
 File: images/volume_image_processing/union_laser_led_binaries.png Graphic file 
 (type png)
 
 <use images/volume_image_processing/union_laser_led_binaries.png>
 Package pdftex.def Info: images/volume_image_processing/union_laser_led_binarie
-s.png used on input line 32.
+s.png used on input line 46.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 28--33
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 42--47
 []
  []
 
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 28--33
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 42--47
 []
  []
 
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 28--33
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 42--47
 []
  []
 
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 28--33
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 42--47
 []
  []
 
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 28--33
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 42--47
 [] 
  []
 
-[7 <./images/volume_analysis_setup/laser-8.jpg>] [8 <./images/volume_image_proc
-essing/led_image.png>] [9 <./images/volume_image_processing/laser_image.png>]
-[10 <./images/volume_image_processing/binary_led_image.png>] [11 <./images/volu
-me_image_processing/binary_laser_image.png>]
-<images/volume_results/solder_led_hole.png, id=57, 497.34193pt x 365.15369pt>
+[14 <./images/volume_analysis_setup/laser-8.jpg>] [15 <./images/volume_image_pr
+ocessing/led_image.png>] [16 <./images/volume_image_processing/laser_image.png>
+] [17 <./images/volume_image_processing/binary_led_image.png>] [18 <./images/vo
+lume_image_processing/binary_laser_image.png>]
+<images/volume_results/solder_led_hole.png, id=90, 497.34193pt x 365.15369pt>
 File: images/volume_results/solder_led_hole.png Graphic file (type png)
 
 <use images/volume_results/solder_led_hole.png>
 Package pdftex.def Info: images/volume_results/solder_led_hole.png used on inpu
-t line 35.
+t line 50.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-<images/volume_results/solder_laser_hole.png, id=58, 497.34193pt x 365.15369pt>
+<images/volume_results/solder_laser_hole.png, id=91, 497.34193pt x 365.15369pt>
 File: images/volume_results/solder_laser_hole.png Graphic file (type png)
 <use images/volume_results/solder_laser_hole.png>
 Package pdftex.def Info: images/volume_results/solder_laser_hole.png used on in
-put line 36.
+put line 51.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-<images/volume_results/binary_image_hole.png, id=59, 497.34193pt x 365.15369pt>
+<images/volume_results/binary_image_hole.png, id=92, 497.34193pt x 365.15369pt>
 File: images/volume_results/binary_image_hole.png Graphic file (type png)
 <use images/volume_results/binary_image_hole.png>
 Package pdftex.def Info: images/volume_results/binary_image_hole.png used on in
-put line 37.
+put line 52.
 (pdftex.def)             Requested size: 497.34071pt x 365.15279pt.
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 35--38
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 50--53
 []
  []
 
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 35--38
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 50--53
 []
  []
 
 
-Overfull \hbox (107.34071pt too wide) in paragraph at lines 35--38
+Overfull \hbox (107.34071pt too wide) in paragraph at lines 50--53
 [] 
  []
 
-[12 <./images/volume_image_processing/union_laser_led_binaries.png>] [13 <./ima
-ges/volume_results/solder_led_hole.png>] [14 <./images/volume_results/solder_la
-ser_hole.png>] [15 <./images/volume_results/binary_image_hole.png>]
+[19 <./images/volume_image_processing/union_laser_led_binaries.png>] [20 <./ima
+ges/volume_results/solder_led_hole.png>] [21 <./images/volume_results/solder_la
+ser_hole.png>]
+<images/Classification/data.png, id=103, 586.8324pt x 442.2924pt>
+File: images/Classification/data.png Graphic file (type png)
+
+<use images/Classification/data.png>
+Package pdftex.def Info: images/Classification/data.png used on input line 56.
+(pdftex.def)             Requested size: 586.83096pt x 442.29132pt.
+
+<images/Classification/analized_data.png, id=104, 586.8324pt x 442.2924pt>
+File: images/Classification/analized_data.png Graphic file (type png)
+
+<use images/Classification/analized_data.png>
+Package pdftex.def Info: images/Classification/analized_data.png used on input 
+line 57.
+(pdftex.def)             Requested size: 586.83096pt x 442.29132pt.
+
+Overfull \hbox (196.83096pt too wide) in paragraph at lines 56--59
+[]
+ []
+
+
+Overfull \hbox (196.83096pt too wide) in paragraph at lines 56--59
+[] 
+ []
+
+[22 <./images/volume_results/binary_image_hole.png>] [23 <./images/Classificati
+on/data.png>] [24 <./images/Classification/analized_data.png>]
 (./Documenation.aux) ) 
 Here is how much of TeX's memory you used:
- 1575 strings out of 494985
- 25305 string characters out of 6180356
+ 1628 strings out of 494985
+ 27094 string characters out of 6180356
  74334 words of memory out of 5000000
- 4784 multiletter control sequences out of 15000+600000
+ 4824 multiletter control sequences out of 15000+600000
  5756 words of font info for 21 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  37i,7n,23p,280b,195s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -405,10 +532,10 @@ Here is how much of TeX's memory you used:
 s/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pf
 b>
-Output written on Documenation.pdf (15 pages, 21936319 bytes).
+Output written on Documenation.pdf (24 pages, 28776834 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 128 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 

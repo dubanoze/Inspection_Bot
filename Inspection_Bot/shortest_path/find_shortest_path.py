@@ -42,7 +42,8 @@ if __name__ == '__main__':
          f.write(coordinate_string)
     f.close()
     
-    tour2=plot_tour(all_greedy_TSP, coordinates)
+    plot_tour(all_greedy_TSP, coordinates)
+    plot_tour(original_TSP, coordinates)
     #f = open("./best_found_tour.txt", "w")
 
     

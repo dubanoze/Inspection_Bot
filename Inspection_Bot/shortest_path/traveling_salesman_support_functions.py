@@ -38,6 +38,15 @@ def greedy_TSP(cities, start=None):
         unvisited.remove(C)
     return tour
 
+def original_TSP(cities, start=None):
+    "At each step, visit the nearest neighbor that is still unvisited."
+    if start is None: start = first(cities)
+    tour = [start]
+    unvisited = cities - {start}
+    for city in unvisited:
+        tour.append(city)
+    return tour
+
 def nearest_neighbor(A, cities):
     "Find the city in cities that is nearest to city A."
     return min(cities, key=lambda x: distance(x, A))
