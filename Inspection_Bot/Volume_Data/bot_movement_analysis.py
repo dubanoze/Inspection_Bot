@@ -14,7 +14,7 @@ if __name__ == '__main__':
     for file in part_file_names:
         file_path = directory+file
         img = cv2.imread(file_path)
-        print img.shape
+        #print img.shape
         width= img.shape[0]
         height = img.shape[1]
         camera_center = (width/2,height)
@@ -25,7 +25,7 @@ if __name__ == '__main__':
         #cv2.cvtColor( img, img, cv2.COLOR_BGR2GRAY );
         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
         img=cv.fromarray(img.copy())
-        print type(img)
+        #print type(img)
         retval, dst=cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY_INV)
         #cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
         #THRESH_BINARY_INV = 
@@ -63,9 +63,9 @@ if __name__ == '__main__':
                 
                 max_center_point_value=area
                 max_comp=cnt
-        print max_center_point_value
+        #print max_center_point_value
         rectangle = cv2.boundingRect(max_comp)
-        print rectangle
+        #print rectangle
         X_pixel_positions.append(rectangle[0]+rectangle[2]/2)
         Y_pixel_positions.append(rectangle[1]+rectangle[3]/2)
             #center_point = np.mean(cnt, axis = 0)
